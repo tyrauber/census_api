@@ -1,0 +1,133 @@
+---
+STATE:
+  sumlevel: '040'
+  slug: STATE
+  name: State
+  description: state
+  path: STATE/2010
+COUNTY:
+  sumlevel: '050'
+  slug: COUNTY
+  name: County
+  description: state-county
+  path: COUNTY/2010
+COUSUB:
+  sumlevel: '060'
+  slug: COUSUB
+  name: County Subdivision
+  description: state-county-county subdivision
+  path: COUSUB/2010
+SUBMCD:
+  sumlevel: '067'
+  slug: SUBMCD
+  name: Subminor Civil Subdivision
+  description: state-county-county subdivision-subminor civil subdivision
+  path: SUBMCD/2010
+TABBLOCK:
+  sumlevel: '101'
+  slug: TABBLOCK
+  name: Block
+  description: state-county-tract-block
+  path: TABBLOCK/2010
+TRACT:
+  sumlevel: '140'
+  slug: TRACT
+  name: Tract
+  description: state-county-tract
+  path: TRACT/2010
+BG:
+  sumlevel: '150'
+  slug: BG
+  name: Block Group
+  description: state-county-tract-block group
+  path: BG/2010
+PLACE:
+  sumlevel: '160'
+  slug: PLACE
+  name: Place
+  description: state-place
+  path: PLACE/2010
+ANRC:
+  sumlevel: '230'
+  slug: ANRC
+  name: Alaska Native Regional Corporation
+  description: state-alaska native regional corporation
+  path: ANRC/2010
+AIANNH:
+  sumlevel: '280'
+  slug: AIANNH
+  name: American Indian Area/Alaska Native Area/Hawaiian Home Land
+  description: state-american indian area/alaska native area/hawaiian home land
+  path: AIANNH/2010
+AITS:
+  sumlevel: '281'
+  slug: AITS
+  name: Tribal Subdivision
+  description: state-american indian area-tribal subdivision
+  path: AITS/2010
+CBSA:
+  sumlevel: '320'
+  slug: CBSA
+  name: Metropolitan Statistical Area/Micropolitan Statistical Area
+  description: state-metropolitan statistical area/micropolitan statistical area
+  path: CBSA/2010
+METDIV:
+  sumlevel: '323'
+  slug: METDIV
+  name: Metropolitan Division
+  description: state-metropolitan statistical area/micropolitan statistical area-metropolitan division
+  path: METDIV/2010
+CSA:
+  sumlevel: '340'
+  slug: CSA
+  name: Combined Statistical Area
+  description: state-combined statistical area
+  path: CSA/2010
+CD:
+  sumlevel: '500'
+  slug: CD
+  name: Congressional District
+  description:	state-congressional district (111th)
+  path: CD/111
+SLDU:
+  sumlevel: '610'
+  slug: SLDU
+  name: State Legislative District (Upper Chamber)
+  description: state-state legislative district (upper chamber)
+  path: SLDU/2010
+SLDL:
+  sumlevel: '620'
+  slug: SLDL
+  name: State Legislative District (Lower Chamber)
+  description: state-state legislative district (lower chamber)
+  path: SLDL/2010
+VTD:
+  sumlevel: '700'
+  slug: VTD
+  name: Voting District
+  description: State-County-Voting District/Remainder
+  path: VTD/2010
+ZCTA5:
+  sumlevel: '871'
+  slug: ZCTA5
+  name: ZIP Code Tabulation Area
+  description: state-zip code tabulation area
+  path: ZCTA5/2010
+ELSD:
+  sumlevel: '950'
+  slug: ELSD
+  name: School District (Elementary)
+  description: State-School District (Elementary)/Remainder
+  path: ELSD/2010
+SCSD:
+  sumlevel: '960'
+  slug: SCSD
+  name: School District (Secondary)
+  description: State-School District (Secondary)/Remainder
+  path: SCSD/2010
+UNSD:
+  sumlevel: '970'
+  slug: UNSD
+  name: School District (Unified)
+  description: State-School District (Unified)/Remainder
+  path: UNSD/2010
