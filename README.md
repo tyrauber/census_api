@@ -13,7 +13,7 @@ http://www.census.gov/developers/tos/key_request.html and follow the instruction
 
 To use this gem, install it with <tt>gem install census_api</tt> or add it to your Gemfile:
 
-`gem 'cemsus_api'`
+`gem 'census_api'`
 
 And install it with <tt>bundle install</tt>
 
