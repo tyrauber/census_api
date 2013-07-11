@@ -13,15 +13,15 @@ module CensusApi
     CENSUS_URL = "http://api.census.gov/data/2010"
 
     def self.find(source, options = {})
-      flds = options[:fields].split(",").push("NAME").join(",")
-      params = { :key => options[:key], :get => flds, :for => format(options[:level],false) }
+      fields = options[:fields].split(",").push("NAME").join(",")
+      params = { :key => options[:key], :get => fields, :for => format(options[:level],false) }
       params.merge!({ :in => format(options[:within][0],true) }) if !options[:within].empty?
       request = new(CENSUS_URL, source, params)
       request.parse_response
     end
 
     def initialize(url, source, options)
-      path = "#{url}/#{source}?#{options.to_p}"
+      path = "#{url}/#{source}?#{options.to_params}"
       @response = RestClient.get(path){ 
         |response, request, result, &block|
           response
@@ -68,7 +68,7 @@ module CensusApi
 end
 
 class Hash
-   def to_p
+   def to_params
      self.map { |k,v| "#{k}=#{v}" }.join("&")
    end
 end
