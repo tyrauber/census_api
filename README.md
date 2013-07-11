@@ -6,7 +6,9 @@ This gem provides a Ruby wrapper around the Census Bureau API.
 ## Obtaining an API key
 
 To be able to use this gem, you'll need a Census Bureau API key. To request an API key, visit
-http://www.census.gov/developers/tos/key_request.html and follow the instructions.
+[http://www.census.gov/developers/tos/key_request.html][key] and follow the instructions.
+
+[key]: (http://www.census.gov/developers/tos/key_request.html)
 
 
 ## Installing the gem
@@ -21,17 +23,33 @@ And install it with <tt>bundle install</tt>
 
 ### Retrieving Census Data
 
+Once you have the API key, you may want to store it as an environment variable.
+
+```sh
+$ export $CENSUS_API_KEY='your-api-key'
+```
+
 First register a new Client:
 
-`@client = CensusApi::Client.new(API_KEY)`
+```ruby
+@client = CensusApi::Client.new(API_KEY) 
+@client = CensusApi::Client.new(ENV['CENSUS_API_KEY']) # from the environment variable
+@client = CensusApi::Client.new(API_KEY, dataset: 'SF1') # with a dataset
+```
 
-To query the 2010 Census SF1 dataset:
+To query the 2010 Census SF1 dataset, set the dataset to 'SF1':
 
-`@client.sf1(fields, for, in*)`
+```ruby
+@client = CensusApi::Client.new(API_KEY, dataset: 'SF1') # with a dataset # during intialization
+@client.dataset = 'SF1' # or after initialization, setting the instance variable
+```
 
-To query the 2006-2010 ACS5 dataset:
+To query the 2006-2010 ACS5 dataset, set the dataset to 'ACS5':
 
-`@client.acs5(fields, for, in*)`
+```ruby
+@client = CensusApi::Client.new(API_KEY, dataset: 'ACS5') # with a dataset # during intialization
+@client.dataset = 'ACS5' # or after initialization, setting the instance variable
+```
 
 For a list of the fields available for each dataset, review the reference PDFs linked at the bottom of this document.
 
