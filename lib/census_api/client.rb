@@ -3,20 +3,20 @@ module CensusApi
     attr_reader   :api_key, :options
     attr_accessor :dataset
 
-    DATASETS = %w( sf1 ac5 )
+    DATASETS = %w( sf1 ac5 ) # can add more datasets as support becomes available
 
-    def initialize(options = {})
-      raise ArgumentError, "You must set an :api_key." unless options.keys.include? :api_key
+    def initialize(api_key, options = {})
+      raise ArgumentError, "You must set an api_key." unless api_key
 
       # Use RestClient directly to determine the validity of the API Key
-      path = "http://api.census.gov/data/2010/sf1?key=#{options[:api_key]}&get=P0010001&for=state:01"
+      path = "http://api.census.gov/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
       response = RestClient.get(path)
 
       if response.body.include? "Invalid Key"
-        raise "'#{options[:api_key]}' is not a valid API key. Check your key for errors, or request a new one at census.gov."
+        raise "'#{api_key}' is not a valid API key. Check your key for errors, or request a new one at census.gov."
       end
       
-      @api_key = options[:api_key]
+      @api_key = api_key
       if options[:dataset]
         @dataset = options[:dataset].downcase if DATASETS.include? options[:dataset].downcase
       end
