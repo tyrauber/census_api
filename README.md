@@ -328,13 +328,13 @@ Retrieve fields for a specific State Legislative District (Upper Chamber) within
 
 `@client.find('P0010001', 'SLDU:00A', 'STATE:02')`
 
-#### SLDU - *(620) state-state legislative district (upper chamber)*
+#### SLDU - *(620) state-state legislative district (lower chamber)*
 
 Retrieve fields for all State Legislative Districts (Lower Chamber) within a State:
 
 `@client.find('P0010001', 'SLDL', 'STATE:02')`
 
-Retrieve fields for a specific State Legislative District (Upper Chamber) within a State:
+Retrieve fields for a specific State Legislative District (Lower Chamber) within a State:
 
 `@client.find('P0010001', 'SLDL:001', 'STATE:02')`
 ￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼
@@ -342,11 +342,11 @@ Retrieve fields for a specific State Legislative District (Upper Chamber) within
 
 Retrieve fields for all Zip Code Tabulation Areas within a specific State:
 
-`@client.find('P0010001', 'ZCTA', 'STATE:02')`
+`@client.find('P0010001', 'ZCTA5', 'STATE:02')`
 
 Retrieve fields for a specific Zip Code Tabulation Area within a specific State:
 
-`@client.find('P0010001', 'ZCTA:99501', 'STATE:02')`
+`@client.find('P0010001', 'ZCTA5:99501', 'STATE:02')`
 
 ## ACS5 2010 Examples and Supported Geography
 

@@ -36,7 +36,7 @@ module CensusApi
           header = response.delete_at(0)
           return response.map{|r| Hash[header.map{|h| h.gsub("NAME","name")}.zip(r)]}
         else
-          return {:code => @response.code, :message=> "Invalid API key or request", :location=> @response.headers[:location]}
+          return {:code => @response.code, :message=> "Invalid API key or request", :location=> @response.headers[:location], :body => @response.body}
         end
     end
     
