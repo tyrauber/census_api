@@ -204,7 +204,7 @@ Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian 
 
 Retrieve fields for all American Indian Area-Tribal Subdivisions:
 
-`@client.find('P0010001', 'AITS')`
+__DOES NOT WORK__: `@client.find('P0010001', 'AITS')` 
 
 Retrieve fields for all American Indian Area-Tribal Subdivisions in a specific American Indian Area:
 
