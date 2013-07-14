@@ -9,7 +9,7 @@ describe CensusApi::Request do
       ]},
       {:source => 'acs5', :field => 'B00001_001E', :results =>[
         {"B00001_001E"=>"2330290", "name"=>"California", "state"=>"06"},
-        {"B00001_001E"=>"92854", "name"=>"Alameda County", "state"=>"06", "county"=>"001"}
+        {"B00001_001E"=>"92854", "name"=>"Alameda County, California", "state"=>"06", "county"=>"001"}
       ]}
     ].each do |test|
     
