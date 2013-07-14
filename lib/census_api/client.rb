@@ -3,7 +3,7 @@ module CensusApi
     attr_reader   :api_key, :options
     attr_accessor :dataset
 
-    DATASETS = %w( sf1 ac5 ) # can add more datasets as support becomes available
+    DATASETS = %w( sf1 acs5 ) # can add more datasets as support becomes available
 
     def initialize(api_key, options = {})
       raise ArgumentError, "You must set an api_key." unless api_key
@@ -33,15 +33,3 @@ module CensusApi
 
   end
 end
-
-
-=begin
-
-@client.find('P0010001', county: 'Suffolk', state: 'MA')
-@client.find('P0010001', county: 'Suffolk County', state: 'Massachusetts')
-@client.find('P0010001', county: 25, state: 25)
-
-
-
-
-=end

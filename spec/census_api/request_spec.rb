@@ -54,44 +54,46 @@ describe CensusApi::Request do
       end
     
       describe "#{test[:source]} for a geography type in a geography type" do
-         use_vcr_cassette "#{test[:source]}_find_counties_in_state"
+        use_vcr_cassette "#{test[:source]}_find_counties_in_state"
 
-         before(:each) do
-           params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY', :within=>['STATE:06']}
-           @collection = CensusApi::Request.find(test[:source], params)      
-         end
+        before(:each) do
+          params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY', :within=>['STATE:06']}
+          @collection = CensusApi::Request.find(test[:source], params)      
+        end
 
-         it 'should have one result' do
-           @collection.count.should == 58
-         end
+        it 'should have one result' do
+          @collection.count.should == 58
+        end
 
-         it 'should include fields for each result' do
-           @collection.each do |result|
-             result.should include(test[:field])
-             result.should include('name')
-             result.should include('state')
-           end
-         end
-       end
+        it 'should include fields for each result' do
+          @collection.each do |result|
+            result.should include(test[:field])
+            result.should include('name')
+            result.should include('state')
+          end
+        end
+      end
      
-       describe "#{test[:source]} for a geography type and id in a geography type" do
-          use_vcr_cassette "#{test[:source]}_find_county_in_state"
+      describe "#{test[:source]} for a geography type and id in a geography type" do
+        use_vcr_cassette "#{test[:source]}_find_county_in_state"
 
-           before(:each) do
-             params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY:001', :within=>['STATE:06']}
-             @collection = CensusApi::Request.find(test[:source], params)      
-           end
+          before(:each) do
+            params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY:001', :within=>['STATE:06']}
+            @collection = CensusApi::Request.find(test[:source], params)      
+          end
+        
+          it 'should have one result' do
+            @collection.count.should == 1
+          end
+        
+          it 'should include fields for each result' do
+            @collection.each do |result|
+              result.should == test[:results][1]
+            end
+          end
 
-           it 'should have one result' do
-             @collection.count.should == 1
-           end
-
-           it 'should include fields for each result' do
-             @collection.each do |result|
-               result.should == test[:results][1]
-             end
-           end
-         end
+        end
+      # FIXME: no 'end' here: why not?
     end
   end
 

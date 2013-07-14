@@ -69,7 +69,7 @@ module CensusApi
       end 
       
       def self.shapes
-        puts "LOADING SHAPES | Request#shapes"
+        # puts "LOADING SHAPES | Request#shapes"
         return @@census_shapes if defined?( @@census_shapes )
         @@census_shapes = {}
         YAML.load_file( File.dirname(__FILE__).to_s + '/../yml/census_shapes.yml' ).each{ |k,v| @@census_shapes[k] = v }

@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'fakeweb'
   gem.add_development_dependency 'vcr'
+  gem.add_development_dependency 'active_support'
 end
