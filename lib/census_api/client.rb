@@ -24,7 +24,7 @@ module CensusApi
 
     def find(fields, level, *within)
       raise "Client has not been assigned a dataset to query. Try @client.dataset = 'SF1' or anything from #{DATASETS}" if self.dataset.nil?
-      Request.find(@dataset, {key: @api_key, fields: fields, level: level, within: within})
+      Request.find( @dataset, @api_key, fields, level, {within: within} )
     end
 
     def dataset=(dataset)
@@ -33,3 +33,15 @@ module CensusApi
 
   end
 end
+
+
+=begin
+
+@client.find('P0010001', county: 'Suffolk', state: 'MA')
+@client.find('P0010001', county: 'Suffolk County', state: 'Massachusetts')
+@client.find('P0010001', county: 25, state: 25)
+
+
+
+
+=end
