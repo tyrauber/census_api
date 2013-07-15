@@ -76,6 +76,39 @@ For example, 'STATE:02+COUNTY:290' would reference the 'Yukon-Koyukuk Census Are
 
 The 'in' parameter is optional, or required, depending upon the geography type. The smaller the geography type being required, the more the request must be restricted by the 'in' parameter.
 
+## Geography Access Nesting
+
+If you want to gain access to a certain geography, you have to specify all superior nesting levels.
+
+### SF1
+
++ State (STATE)*
+  + County (COUNTY)*
+    + County Subdivision (COUSUB)
+        + Subminor Civil Subdivision (SUBMCD)
+    + Tract (TRACT)
+        + Block Group (BG)
+        + Block (TABBLOCK)
+  + Place (PLACE)*
+  + Alaska Native Regional Corporation (ANRC)*
+  + American Indian Area (AIANNH)*
+    + Tribal Subdivision (AITS)
+  + Micropolitan Statistical Area (CBSA)
+    + Metropolitan Division (METDIV)
+  + Combined Statistical Area (CSA)
+  + Congressional District (CD)
+    + County Remainder (COUNTY)
+    + Tract Remainder (TRACT)
+    + County Subdivision Remainder (COUSUB)
+    + Place Remainder (PLACE)
+    + American Indian Area Remainder (AIANNH)
+    + Alaska Native Regional Corporation (ANRC)
+  + State Legislative District, Upper Chamber (SLDU)
+  + State Legislative District, Lower Chamber (SLDL)
+  + Zip Code Tabulation Area (ZCTA5)
+
+* Do not need a superior geography. Note: PLACE is a very large request.
+
 ## Census 2010 SF1 Examples and Supported Geography
 
 #### STATE - *(040) state*
@@ -278,7 +311,7 @@ Retrieve fields for a specific County within a specific Congressional District, 
 
 `@client.find('P0010001', 'TRACT:702100', 'STATE:24+CD:01+COUNTY:003')`
 
-### COUSUB (Remainder) - *(521) state-congressional district-county-county subdivision*
+#### COUSUB (Remainder) - *(521) state-congressional district-county-county subdivision*
 
 Retrieve fields for all County Subdivisions within a specific Congressional District, County Remainder:
 
