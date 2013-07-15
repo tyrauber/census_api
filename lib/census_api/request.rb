@@ -30,7 +30,6 @@ module CensusApi
       level = level.censify                 if level.kind_of? Hash
       level = level.to_s.singularize.upcase if level.kind_of? Symbol
 
-#      options = options
       puts options.inspect
       
       if options[:within].first.kind_of? Hash
@@ -78,7 +77,6 @@ module CensusApi
       end 
       
       def self.shapes
-        # puts "LOADING SHAPES | Request#shapes"
         return @@census_shapes if defined?( @@census_shapes )
         @@census_shapes = {}
         YAML.load_file( File.dirname(__FILE__).to_s + '/../yml/census_shapes.yml' ).each{ |k,v| @@census_shapes[k] = v }
