@@ -39,6 +39,7 @@ describe CensusApi::Client do
       @client = CensusApi::Client.new(api_key, dataset: source)
       CensusApi::Request.should_receive(:find).with(@client.dataset, options)
       @client.find(options[:fields], options[:level])
+
     end
   end
 end
