@@ -29,17 +29,13 @@ module CensusApi
 
       level = level.censify                 if level.kind_of? Hash
       level = level.to_s.singularize.upcase if level.kind_of? Symbol
-
-      puts options.inspect
       
-      if options[:within].first.kind_of? Hash
-        options = options[:within].first.collect {|opt| opt.join(':').upcase}.join('+')
-      elsif options[:within].first.kind_of? String
-        options = options[:within].first
-      end
+      options = options[:within].first
+      options = options if options.kind_of? String
+      options = options.collect {|opt| opt.join(':').upcase}.join('+') if options.kind_of? Hash
       
       params = { :key => api_key, :get => fields, :for => format(level, false) }
-      params.merge!({ :in => format(options,true) }) unless options.empty?
+      params.merge!({ :in => format(options,true) }) unless options.nil?
 
       request = new(CENSUS_URL, source, params)
       request.parse_response
