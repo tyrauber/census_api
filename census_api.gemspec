@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.name          = "census_api"
   gem.version       = CensusApi::VERSION
   gem.authors       = ["Ty Rauber"]
+  gem.license       = 'MIT'
   gem.email         = ["tyrauber@mac.com"]
   gem.description   = %q{A Ruby Gem for querying the US Census Bureau API}
   gem.summary       = %q{A Ruby Wrapper for the US Census Bureau API, providing the ability to query both the 2010 Census and 2006-2010 ACS5 datasets.}
