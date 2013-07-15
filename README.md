@@ -99,7 +99,7 @@ If you want to gain access to a certain geography, you have to specify all super
   + Congressional District (CD)
     + County Remainder (COUNTY)
     + Tract Remainder (TRACT)
-    + County Subdivision Remainder (COUSUB)
++ County Subdivision Remainder (COUSUB)
     + Place Remainder (PLACE)
     + American Indian Area Remainder (AIANNH)
     + Alaska Native Regional Corporation (ANRC)
