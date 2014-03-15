@@ -1,5 +1,7 @@
 module CensusApi
   class Client
+    require 'rest-client'
+
     attr_reader   :api_key, :options
     attr_accessor :dataset
 
