@@ -2,10 +2,10 @@ module CensusApi
   class Client
     require 'rest-client'
 
-    attr_reader   :api_key, :options
+    attr_reader   :api_key, :api_vintage, :options
     attr_accessor :dataset
 
-    DATASETS = %w( sf1 acs5 ) # can add more datasets as support becomes available
+    DATASETS = %w( sf1 acs1 acs3 acs5 ) # can add more datasets as support becomes available
 
     def initialize(api_key, options = {})
       raise ArgumentError, "You must set an api_key." unless api_key
@@ -19,6 +19,7 @@ module CensusApi
       end
 
       @api_key = api_key
+      @api_vintage = options[:vintage] || 2010
       if options[:dataset]
         @dataset = options[:dataset].downcase if DATASETS.include? options[:dataset].downcase
       end
@@ -26,7 +27,7 @@ module CensusApi
 
     def find(fields, level, *within)
       raise "Client has not been assigned a dataset to query. Try @client.dataset = 'SF1' or anything from #{DATASETS}" if self.dataset.nil?
-      Request.find(dataset, {key: @api_key, fields: fields, level: level, within: within})
+      Request.find(dataset, {key: @api_key, vintage: @api_vintage, fields: fields, level: level, within: within})
     end
   end
 end
