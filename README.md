@@ -35,6 +35,7 @@ $ export $CENSUS_API_KEY='your-api-key'
 @client = CensusApi::Client.new(API_KEY) 
 @client = CensusApi::Client.new(ENV['CENSUS_API_KEY']) # from the environment variable
 @client = CensusApi::Client.new(API_KEY, dataset: 'SF1') # with a dataset
+@client = CensusApi::Client.new(API_KEY, {vintage: 2012, dataset: 'SF1'}) # specific vintage (year) data; defaults to 2010
 ```
 
 ### Query a Dataset

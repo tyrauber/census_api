@@ -7,9 +7,8 @@ module CensusApi
 
     DATASETS = %w( sf1 acs1 acs3 acs5 ) # can add more datasets as support becomes available
 
-    def initialize(api_key, api_vintage, options = {})
+    def initialize(api_key, options = {})
       raise ArgumentError, "You must set an api_key." unless api_key
-      raise ArgumentError, "You must specify a vintage (year)." unless api_vintage
 
       # Use RestClient directly to determine the validity of the API Key
       path = "http://api.census.gov/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
@@ -20,7 +19,7 @@ module CensusApi
       end
 
       @api_key = api_key
-      @api_vintage = api_vintage
+      @api_vintage = options[:vintage] || 2010
       if options[:dataset]
         @dataset = options[:dataset].downcase if DATASETS.include? options[:dataset].downcase
       end
