@@ -10,10 +10,10 @@ module CensusApi
     
     @@census_shapes
     
-    CENSUS_URL = "http://api.census.gov/data/2010"
+    CENSUS_URL = "http://api.census.gov/data/"
 
-    def initialize(url, source, options)
-      path = "#{url}/#{source}?#{options.to_params}"
+    def initialize(url, vintage, source, options)
+      path = "#{url}/#{vintage}/#{source}?#{options.to_params}"
       @response = RestClient.get(path) do |response, request, result, &block|
         response
       end
@@ -27,7 +27,7 @@ module CensusApi
       fields = fields.push("NAME").join(",") if fields.kind_of? Array
       params = { :key => options[:key], :get => fields, :for => format(options[:level],false) }
       params.merge!({ :in => format(options[:within][0],true) }) if !options[:within].empty?
-      request = new(CENSUS_URL, source, params)
+      request = new(CENSUS_URL, options[:api_vintage], source, params)
       request.parse_response
     end
 
