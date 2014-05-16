@@ -54,44 +54,87 @@ describe CensusApi::Request do
       end
     
       describe "#{test[:source]} for a geography type in a geography type" do
-         use_vcr_cassette "#{test[:source]}_find_counties_in_state"
+        use_vcr_cassette "#{test[:source]}_find_counties_in_state"
 
-         before(:each) do
-           params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY', :within=>['STATE:06']}
-           @collection = CensusApi::Request.find(test[:source], params)      
-         end
+        before(:each) do
+          params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY', :within=>['STATE:06']}
+          @collection = CensusApi::Request.find(test[:source], params)
+        end
 
-         it 'should have one result' do
-           @collection.count.should == 58
-         end
+        it 'should have one result' do
+          @collection.count.should == 58
+        end
 
-         it 'should include fields for each result' do
-           @collection.each do |result|
-             result.should include(test[:field])
-             result.should include('name')
-             result.should include('state')
-           end
-         end
-       end
-     
-       describe "#{test[:source]} for a geography type and id in a geography type" do
-          use_vcr_cassette "#{test[:source]}_find_county_in_state"
+        it 'should include fields for each result' do
+          @collection.each do |result|
+            result.should include(test[:field])
+            result.should include('name')
+            result.should include('state')
+          end
+        end
+      end
 
-           before(:each) do
-             params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY:001', :within=>['STATE:06']}
-             @collection = CensusApi::Request.find(test[:source], params)      
-           end
+      describe "#{test[:source]} for a geography type and id in a geography type" do
+        use_vcr_cassette "#{test[:source]}_find_county_in_state"
 
-           it 'should have one result' do
-             @collection.count.should == 1
-           end
+        before(:each) do
+          params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY:001', :within=>['STATE:06']}
+          @collection = CensusApi::Request.find(test[:source], params)
+        end
 
-           it 'should include fields for each result' do
-             @collection.each do |result|
-               result.should == test[:results][1]
-             end
-           end
-         end
+        it 'should have one result' do
+          @collection.count.should == 1
+        end
+
+        it 'should include fields for each result' do
+          @collection.each do |result|
+            result.should == test[:results][1]
+          end
+        end
+      end
+    end
+  end
+
+  context "DATASETS" do
+    CensusApi::Client::DATASETS.each do |source|
+      describe "#{source}" do
+        use_vcr_cassette "dataset_#{source}_find_states"
+        let(:params) do
+          { :key=> api_key,
+            :vintage => !!(source.match('sf1')) ? 2010 : 2012,
+            :fields => !!(source.match('sf1')) ? 'P0010001' : 'B00001_001E',
+            :source => source,
+            :level => 'STATE',
+            :within=>[]
+          }
+        end
+
+        it "#{source} should be valid" do
+          @collection = CensusApi::Request.find(source, params)
+          @collection.count.should == 52
+        end
+      end
+    end
+  end
+
+  context ".vintage" do
+    describe "vintage" do
+      use_vcr_cassette "sf1_find_states_vintage"
+
+      before(:each) do
+        params = {:key=> api_key, :vintage => 2010, :fields => 'B00001_001E', :source => 'acs5', :level => 'STATE', :within=>[]}
+        @collection_2010 = CensusApi::Request.find(params[:source], params)
+        @collection_2012 = CensusApi::Request.find(params[:source], params.merge!({ :vintage => 2012 }))
+      end
+
+      it 'should be valid' do
+        @collection_2010.count.should == 52
+        @collection_2012.count.should == 52
+      end
+
+      it 'should not be same result set' do
+        @collection_2010.should_not == @collection_2012
+      end
     end
   end
 

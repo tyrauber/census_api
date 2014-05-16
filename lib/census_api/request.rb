@@ -27,6 +27,7 @@ module CensusApi
       fields = fields.push("NAME").join(",") if fields.kind_of? Array
       params = { :key => options[:key], :get => fields, :for => format(options[:level],false) }
       params.merge!({ :in => format(options[:within][0],true) }) if !options[:within].empty?
+      options.merge!({ :vintage => 2010 }) unless options[:vintage]
       request = new(CENSUS_URL, options[:vintage], source, params)
       request.parse_response
     end
