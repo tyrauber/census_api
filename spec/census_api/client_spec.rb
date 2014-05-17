@@ -28,14 +28,14 @@ describe CensusApi::Client do
     end
 
     it 'should request sf1' do
-      source, options = 'sf1', {:key=> api_key, :fields => 'P0010001', :level => 'STATE:06', :within=>[]}
+      source, options = 'sf1', {:key=> api_key, :vintage => 2010, :fields => 'P0010001', :level => 'STATE:06', :within=>[]}
       @client = CensusApi::Client.new(api_key, dataset: source)
       CensusApi::Request.should_receive(:find).with(@client.dataset, options)
       @client.find(options[:fields], options[:level])
     end
 
     it 'should request acs5' do
-      source, options = 'acs5', {:key=> api_key, :fields => 'B00001_001E', :level => 'STATE:06', :within=>[]}
+      source, options = 'acs5', {:key=> api_key, :vintage => 2010, :fields => 'B00001_001E', :level => 'STATE:06', :within=>[]}
       @client = CensusApi::Client.new(api_key, dataset: source)
       CensusApi::Request.should_receive(:find).with(@client.dataset, options)
       @client.find(options[:fields], options[:level])
