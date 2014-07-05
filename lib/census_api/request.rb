@@ -14,8 +14,7 @@ module CensusApi
     CENSUS_URL = 'http://api.census.gov/data'
 
     def initialize(url, vintage, source, options)
-      uri = Addressable::URI.parse("#{url}/#{vintage}/#{source}")
-      uri.query_values = options
+      uri = "#{url}/#{vintage}/#{source}?#{to_params(options)}"
       @response = RestClient.get(uri.to_s) do |response, _req, _res, _blk|
         response
       end
@@ -27,7 +26,9 @@ module CensusApi
       fields = fields.push('NAME').join(',') if fields.is_a? Array
       level  = format(options[:level], false)
       params = { key: options[:key], get: fields, for: level }
-      params.merge!(in: format(options[:within][0], true)) unless options[:within].empty?
+      unless (options[:within].nil? || (options[:within].is_a?(Array) && options[:within].compact.empty?))
+        params.merge!(in: format(options[:within][0], true))
+      end
       options.merge!(vintage: 2010) unless options[:vintage]
       request = new(CENSUS_URL, options[:vintage], source, params)
       request.parse_response
@@ -40,6 +41,10 @@ module CensusApi
       else
         response_error(@response)
       end
+    end
+
+    def to_params(options)
+      options.map { |k,v| "#{k}=#{v}" }.join("&")
     end
 
     protected
@@ -55,7 +60,6 @@ module CensusApi
     def response_error(response)
       {
         code: response.code,
-        message: 'Invalid API key or request',
         location: response.headers[:location],
         body: response.body
       }

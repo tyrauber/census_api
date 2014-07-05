@@ -36,20 +36,21 @@ module CensusApi
       Request.find(dataset, options)
     end
 
-    def where(options = { key: @api_key,  vintage: @api_vintage })
+    def where(options={})
+      options.merge!(key: @api_key, vintage: @api_vintage)
       fail "Client requires a dataset (#{DATASETS})." if @dataset.nil?
       [:fields, :level].each do |f|
         fail ArgumentError, "#{f} is a requied parameter" if options[f].nil?
       end
+      options[:within] = [options[:within]]
       Request.find(dataset, options)
     end
 
     protected
 
     def validate_api_key(api_key)
-      uri = Addressable::URI.parse('http://api.census.gov/data/2010/sf1')
-      uri.query_values = { key: api_key, get: 'P0010001', for: 'state:01' }
-      response = RestClient.get uri.to_s
+      path = "http://api.census.gov/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
+      response = RestClient.get path
       if response.body.include? 'Invalid Key'
         fail "'#{api_key}' is not a valid API key. Check your key for errors,
         or request a new one at census.gov."

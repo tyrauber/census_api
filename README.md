@@ -57,14 +57,14 @@ To query the 2006-2010 ACS5 dataset, set the dataset to 'ACS5':
 Then, use `Client#where` with an options hash to query for Census data. The fields and level parameters are required. The within parameter is optional and scopes the query. For example:
 
 ```ruby
-@client.where({ fields: 'P0010001', level: 'COUNTY:001', within: ['STATE:06'] })
+@client.where({ fields: 'P0010001', level: 'COUNTY:001', within: 'STATE:06' })
 
 ```
 
 The `Client.find` method which takes positional arguments is still available, but deprecated.
 
 ```ruby
-@client.find('P0010001', 'COUNTY:001', ['STATE:06'])
+@client.find('P0010001', 'COUNTY:001', 'STATE:06')
 
 ```
 
@@ -274,7 +274,7 @@ Retrieve fields for all Counties within a specific Congressional District:
 
 Retrieve fields for a specific County within a specific Congressional District:
 
-`@client.where({ fields: 'P0010001', level: 'COUNTY:01', within: 'STATE:24+CD:01' })`
+`@client.where({ fields: 'P0010001', level: 'COUNTY:003', within: 'STATE:24+CD:01' })`
 
 #### TRACT (Remainder) - *(511) state-congressional district-county-tract*
 
@@ -314,7 +314,7 @@ Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home La
 
 Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian Home Land  within a specific Congressional District:
 
-`@client.where({ fields: 'P0010001', level: 'AIANNH:03800', within: 'STATE:02+CD:00' })`
+__DOES NOT WORK__: `@client.where({ fields: 'P0010001', level: 'AIANNH:0010', within: 'STATE:02+CD:00' })`
 
 #### ANRC (Remainder) - *(560) state-congressional district-alaska native regional corporation*
 
@@ -476,7 +476,7 @@ Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home La
 
 Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian Home Land within a specific State:
 
-`@client.where({ fields: 'B00001_001E', level: 'AIANNH:03800', within: 'STATE:02' })`
+__DOES NOT WORK__: `@client.where({ fields: 'B00001_001E', level: 'AIANNH:03800', within: 'STATE:02' })`
 
 #### CD - *(500) state-congressional district*
 

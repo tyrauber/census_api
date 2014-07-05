@@ -22,7 +22,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_runtime_dependency 'rest-client'
-  gem.add_runtime_dependency 'addressable', '~> 2.3'
   gem.add_runtime_dependency 'hpricot'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'fakeweb'
