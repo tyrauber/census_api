@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe CensusApi::Client do
 
-  describe "client initialization" do
+  describe 'client initialization' do
 
-    use_vcr_cassette "initialize_client"
+    use_vcr_cassette 'initialize_client'
 
     it 'should not initialize without an api_key' do
       lambda { CensusApi::Client.new }.should raise_error
@@ -16,9 +16,9 @@ describe CensusApi::Client do
     end
   end
 
-  describe "client and dataset initialization" do
+  describe 'client and dataset initialization' do
 
-    use_vcr_cassette "initialize_client_and_dataset"
+    use_vcr_cassette 'initialize_client_and_dataset'
 
     it 'should initialize with an api_key and dataset' do
       dataset = 'SF1'
@@ -28,67 +28,108 @@ describe CensusApi::Client do
     end
   end
 
-  describe "datasets" do
+  describe 'datasets' do
 
-    use_vcr_cassette "find_method"
+    use_vcr_cassette 'find_method'
+    describe 'sf1' do
+      let(:source) { 'sf1' }
+      let(:options) do
+        { key: api_key,
+          vintage: 2010,
+          fields: 'P0010001',
+          level: 'STATE:06',
+          within: [] }
+      end
 
-    it 'should request sf1' do
-      source, options = 'sf1', {:key=> api_key, :vintage => 2010, :fields => 'P0010001', :level => 'STATE:06', :within=>[]}
-      @client = CensusApi::Client.new(api_key, dataset: source)
-      CensusApi::Request.should_receive(:find).with(@client.dataset, options)
-      @client.where(options)
+      it 'should request sf1' do
+        @client = CensusApi::Client.new(api_key, dataset: source)
+        CensusApi::Request.should_receive(:find).with(@client.dataset, options)
+        @client.where(options)
+      end
     end
 
-    it 'should request acs5' do
-      source, options = 'acs5', {:key=> api_key, :vintage => 2010, :fields => 'B00001_001E', :level => 'STATE:06', :within=>[]}
-      @client = CensusApi::Client.new(api_key, dataset: source)
-      CensusApi::Request.should_receive(:find).with(@client.dataset, options)
-      @client.where(options)
+    describe 'acs5' do
+      let(:source) { 'acs5' }
+      let(:options) do
+        { key: api_key,
+          vintage: 2010,
+          fields: 'B00001_001E',
+          level: 'STATE:06',
+          within: [] }
+      end
+
+      it 'should request acs5' do
+        @client = CensusApi::Client.new(api_key, dataset: source)
+        CensusApi::Request.should_receive(:find).with(@client.dataset, options)
+        @client.where(options)
+      end
     end
   end
 
-  describe "#find" do
+  describe '#find' do
 
-    use_vcr_cassette "find_method"
+    use_vcr_cassette 'find_method'
 
     let(:source) { 'sf1' }
-    let(:options) { {:key=> api_key, :vintage => 2010, :fields => 'P0010001', :level => 'STATE:06' } }
+    let(:options) do
+      { key: api_key,
+        vintage: 2010,
+        fields: 'P0010001',
+        level: 'STATE:06',
+        within: [] }
+    end
 
-    it "should be deprecated" do
-       @client = CensusApi::Client.new(api_key, dataset: source)
-       @client.should_receive(:warn).with("[DEPRECATION] `find` is deprecated.  Please use `where` with options hash instead.")
-       @client.find(options[:fields], options[:level])
+    it 'should be deprecated' do
+      @client = CensusApi::Client.new(api_key, dataset: source)
+      @client.should_receive(:warn)
+      .with('[DEPRECATION] `find` is deprecated. Please use `where` instead.')
+      @client.find(options[:fields], options[:level])
     end
   end
 
-  describe "#where" do
+  describe '#where' do
+    use_vcr_cassette 'where_method'
 
-     use_vcr_cassette "where_method"
+    let(:source) { 'sf1' }
 
-     let(:source) { 'sf1' }
-     let(:options) { {:key=> api_key, :vintage => 2010, :fields => 'P0010001', :level => 'STATE:06' } }
-     let(:full_params) { {:key=> api_key, :vintage => 2010, :fields => 'P0010001', :level => 'COUNTY:001', :within=>['STATE:06'] } }
+    let(:options) do
+      {
+        key: api_key,
+        vintage: 2010,
+        fields: 'P0010001',
+        level: 'STATE:06',
+        within: []
+      }
+    end
 
-     it 'should raise if missing fields params' do
-       @client = CensusApi::Client.new(api_key, dataset: source)
-       expect { @client.where({fields: options[:fields]}) }.to raise_error(ArgumentError)
-     end
+    let(:full_params) do
+      options.merge!(level: 'COUNTY:001', within: 'STATE:06')
+    end
 
-     it 'should raise if missing level params' do
-       @client = CensusApi::Client.new(api_key, dataset: source)
-       expect { @client.where({level: options[:level]}) }.to raise_error(ArgumentError)
-     end
+    it 'should raise if missing fields params' do
+      @client = CensusApi::Client.new(api_key, dataset: source)
+      expect { @client.where(fields: options[:fields]) }
+      .to raise_error(ArgumentError)
+    end
 
-     it 'should request sf1 with valid fields and level params' do
-       @client = CensusApi::Client.new(api_key, dataset: source)
-       CensusApi::Request.should_receive(:find).with(@client.dataset, options)
-       expect { @client.where(options) }.not_to raise_error
-     end
+    it 'should raise if missing level params' do
+      @client = CensusApi::Client.new(api_key, dataset: source)
+      expect { @client.where(level: options[:level]) }
+      .to raise_error(ArgumentError)
+    end
 
-     it 'should request sf1 with valid fields, level and within params' do
-       @client = CensusApi::Client.new(api_key, dataset: source)
-       CensusApi::Request.should_receive(:find).with(@client.dataset, full_params)
-       expect { @client.where(full_params) }.not_to raise_error
-     end
-   end
+    it 'should request sf1 with valid fields and level params' do
+      @client = CensusApi::Client.new(api_key, dataset: source)
+      CensusApi::Request.should_receive(:find)
+      .with(@client.dataset, options)
+      expect { @client.where(options) }.not_to raise_error
+    end
+
+    it 'should request sf1 with valid fields, level and within params' do
+      @client = CensusApi::Client.new(api_key, dataset: source)
+      CensusApi::Request.should_receive(:find)
+      .with(@client.dataset, full_params)
+      expect { @client.where(full_params) }.not_to raise_error
+    end
+  end
 end
