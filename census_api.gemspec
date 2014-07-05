@@ -4,23 +4,28 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'census_api/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "census_api"
+  gem.name          = 'census_api'
   gem.version       = CensusApi::VERSION
-  gem.authors       = ["Ty Rauber"]
+  gem.authors       = ['Ty Rauber']
   gem.license       = 'MIT'
-  gem.email         = ["tyrauber@mac.com"]
-  gem.description   = %q{A Ruby Gem for querying the US Census Bureau API}
-  gem.summary       = %q{A Ruby Wrapper for the US Census Bureau API, providing the ability to query both the 2010 Census and 2006-2010 ACS5 datasets.}
-  gem.homepage      = "https://github.com/tyrauber/census_api.git"
+  gem.email         = ['tyrauber@mac.com']
+  gem.description   = 'A Ruby Gem for querying the US Census Bureau API'
+  gem.summary       = 'A Ruby Wrapper for the US Census Bureau API,
+                      providing the ability to query both the 2010 Census
+                      and 2006-2010 ACS5 datasets.'
+  gem.homepage      = 'https://github.com/tyrauber/census_api.git'
 
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
-  
-  gem.add_runtime_dependency "rest-client"
-  gem.add_runtime_dependency "hpricot"
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.executables   = `git ls-files -- bin/*`.split("\n")
+                      .map { |f| File.basename(f) }
+  gem.require_paths = ['lib']
+
+  gem.add_runtime_dependency 'rest-client'
+  gem.add_runtime_dependency 'addressable', '~> 2.3'
+  gem.add_runtime_dependency 'hpricot'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'fakeweb'
   gem.add_development_dependency 'vcr'
+  gem.add_development_dependency 'rubocop'
 end

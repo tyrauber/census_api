@@ -2,29 +2,39 @@ require 'spec_helper'
 
 describe CensusApi::Request do
 
-  context "#find" do
-    [{:source => 'sf1', :field => 'P0010001', :results=> [
-        {"P0010001"=>"37253956", "name"=>"California", "state"=>"06"},
-        {"P0010001"=>"1510271", "name"=>"Alameda County", "state"=>"06", "county"=>"001"}
+  context '#find' do
+    [{source: 'sf1', field: 'P0010001', results: [
+        {'P0010001'=>'37253956', 'name'=>'California', 'state'=>'06'},
+        {'P0010001'=>'1510271', 'name'=>'Alameda County', 'state'=>'06', 'county'=>'001'}
       ]},
-      {:source => 'acs5', :field => 'B00001_001E', :results =>[
-        {"B00001_001E"=>"2330290", "name"=>"California", "state"=>"06"},
-        {"B00001_001E"=>"92854", "name"=>"Alameda County, California", "state"=>"06", "county"=>"001"}
+      {source: 'acs5', field: 'B00001_001E', results: [
+        {'B00001_001E'=>'2330290', 'name'=>'California', 'state'=>'06'},
+        {'B00001_001E'=>'92854', 'name'=>'Alameda County, California', 'state'=>'06', 'county'=>'001'}
       ]}
     ].each do |test|
-    
+
       describe "#{test[:source]} for a geography type" do
         use_vcr_cassette "#{test[:source]}_find_states"
 
+        let(:params) do
+          {
+            key: api_key,
+            source: test[:source],
+            vintage: 2010,
+            fields: test[:field],
+            level: 'STATE',
+            within: []
+          }
+        end
+
         before(:each) do
-          params = {:key=> api_key, :fields => test[:field], :level => 'STATE', :within=>[]}
-          @collection = CensusApi::Request.find(test[:source], params)      
+          @collection = CensusApi::Request.find(test[:source], params)
         end
 
         it 'should have 52 results' do
           @collection.count.should == 52
         end
-      
+
         it 'should include fields for each result' do
           @collection.each do |result|
             result.should include(test[:field])
@@ -33,31 +43,50 @@ describe CensusApi::Request do
           end
         end
       end
-    
+
       describe "#{test[:source]} for a geography type and id" do
         use_vcr_cassette "#{test[:source]}_find_state_with_id"
+        let(:params) do
+          {
+            key: api_key,
+            source: test[:source],
+            vintage: 2010,
+            fields: test[:field],
+            level: 'STATE:06',
+            within: []
+          }
+        end
 
         before(:each) do
-          params = {:key=> api_key, :fields => test[:field], :level => 'STATE:06', :within=>[]}
-          @collection = CensusApi::Request.find(test[:source], params)      
+          @collection = CensusApi::Request.find(test[:source], params)
         end
 
         it 'should have one result' do
           @collection.count.should == 1
         end
-      
+
         it 'should include fields for each result' do
           @collection.each do |result|
             result.should == test[:results][0]
           end
         end
       end
-    
-      describe "#{test[:source]} for a geography type in a geography type" do
+
+      describe "#{test[:source]} for a geography type" do
         use_vcr_cassette "#{test[:source]}_find_counties_in_state"
 
+        let(:params) do
+          {
+            key: api_key,
+            source: test[:source],
+            vintage: 2010,
+            fields: test[:field],
+            level: 'COUNTY',
+            within: ['STATE:06']
+          }
+        end
+
         before(:each) do
-          params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY', :within=>['STATE:06']}
           @collection = CensusApi::Request.find(test[:source], params)
         end
 
@@ -74,11 +103,21 @@ describe CensusApi::Request do
         end
       end
 
-      describe "#{test[:source]} for a geography type and id in a geography type" do
+      describe "#{test[:source]} for a geography" do
         use_vcr_cassette "#{test[:source]}_find_county_in_state"
 
+        let(:params) do
+          {
+            key: api_key,
+            source: test[:source],
+            vintage: 2010,
+            fields: test[:field],
+            level: 'COUNTY:001',
+            within: ['STATE:06']
+          }
+        end
+
         before(:each) do
-          params = {:key=> api_key, :fields => test[:field], :level => 'COUNTY:001', :within=>['STATE:06']}
           @collection = CensusApi::Request.find(test[:source], params)
         end
 
@@ -95,17 +134,18 @@ describe CensusApi::Request do
     end
   end
 
-  context "DATASETS" do
+  context 'DATASETS' do
     CensusApi::Client::DATASETS.each do |source|
       describe "#{source}" do
         use_vcr_cassette "dataset_#{source}_find_states"
         let(:params) do
-          { :key=> api_key,
-            :vintage => !!(source.match('sf1')) ? 2010 : 2012,
-            :fields => !!(source.match('sf1')) ? 'P0010001' : 'B00001_001E',
-            :source => source,
-            :level => 'STATE',
-            :within=>[]
+          {
+            key: api_key,
+            source: source,
+            vintage: source.match('sf1') ? 2010 : 2012,
+            fields: source.match('sf1') ? 'P0010001' : 'B00001_001E',
+            level: 'STATE',
+            within: []
           }
         end
 
@@ -117,19 +157,29 @@ describe CensusApi::Request do
     end
   end
 
-  context ".vintage" do
-    describe "vintage" do
-      use_vcr_cassette "sf1_find_states_vintage"
+  context '.vintage' do
+    describe 'vintage' do
+      use_vcr_cassette 'sf1_find_states_vintage'
+
+      let(:params) do
+        {
+          key: api_key,
+          source: 'acs5',
+          vintage: 2010,
+          fields: 'B00001_001E',
+          level: 'STATE',
+          within: []
+        }
+      end
 
       before(:each) do
-        params = {:key=> api_key, :vintage => 2010, :fields => 'B00001_001E', :source => 'acs5', :level => 'STATE', :within=>[]}
         @collection_2010 = CensusApi::Request.find(params[:source], params)
-        @collection_2012 = CensusApi::Request.find(params[:source], params.merge!({ :vintage => 2012 }))
+        params.merge!(vintage: 2012)
+        @collection_2012 = CensusApi::Request.find(params[:source], params)
       end
 
       it 'should be valid' do
-        @collection_2010.count.should == 52
-        @collection_2012.count.should == 52
+        @collection_2010.count.should eq(52)
       end
 
       it 'should not be same result set' do
@@ -138,21 +188,25 @@ describe CensusApi::Request do
     end
   end
 
-  context "#format" do
+  context '#format' do
     it 'should add wildcard after reformatting geography type without id' do
-      CensusApi::Request.format('COUSUB', false).should == 'county+subdivision:*'
+      CensusApi::Request.format('COUSUB', false).should
+      be('county+subdivision:*')
     end
 
     it 'should maintain geography id after reformatting geography type' do
-      CensusApi::Request.format('COUSUB:86690', false).should == 'county+subdivision:86690'
+      CensusApi::Request.format('COUSUB:86690', false).should
+      be('county+subdivision:86690')
     end
 
     it 'should truncate geography type AIANNH' do
-      CensusApi::Request.format('AIANNH', true).should == 'american+indian+area:*'
+      CensusApi::Request.format('AIANNH', true).should
+      be('american+indian+area:*')
     end
 
     it 'should not truncate geography type CBSA' do
-      CensusApi::Request.format('CBSA', true).should == 'metropolitan+statistical+area/micropolitan+statistical+area:*'
+      CensusApi::Request.format('CBSA', true).should
+      be('metropolitan+statistical+area/micropolitan+statistical+area:*')
     end
   end
 end
