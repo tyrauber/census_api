@@ -54,10 +54,17 @@ To query the 2006-2010 ACS5 dataset, set the dataset to 'ACS5':
 @client.dataset = 'ACS5' # or after initialization, setting the instance variable
 ```
 
-Then, use `Client#find` with the below parameters to query for Census data. For example:
+Then, use `Client#where` with an options hash to query for Census data. The fields and level parameters are required. The within parameter is optional and scopes the query. For example:
 
 ```ruby
-@client.find('P0010001', 'STATE:02,06')
+@client.where({ fields: 'P0010001', level: 'COUNTY:001', within: ['STATE:06'] })
+
+```
+
+The `Client.find` method which takes positional arguments is still available, but deprecated.
+
+```ruby
+@client.find('P0010001', 'COUNTY:001', ['STATE:06'])
 
 ```
 
@@ -67,15 +74,15 @@ For a list of the fields available for each dataset, review the reference PDFs l
 
 The 'fields' parameter is a comma separated string of SF1 field names.
 
-The 'for' parameter is a single geography type, and optionally, the geography ids (geoid) for specific geographies of that type. A colon separates the geography type from the id and a comma separates ids.
+The 'level' parameter is a single geography type, and optionally, the geography ids (geoid) for specific geographies of that type. A colon separates the geography type from the id and a comma separates ids.
 
 For example, 'STATE:06,02' would reference the state of California and Alaska.
 
-The 'in' parameter is a set of geography types or geography. Similar to the 'for' parameter, a colon separates the geography type from the id and a comma separates ids. Sets of geography are separated by a plus symbol.
+The 'within' parameter is a set of geography types or geography. Similar to the 'level' parameter, a colon separates the geography type from the id and a comma separates ids. Sets of geography are separated by a plus symbol.
 
 For example, 'STATE:02+COUNTY:290' would reference the 'Yukon-Koyukuk Census Area' County in the state of Alaska.
 
-The 'in' parameter is optional, or required, depending upon the geography type. The smaller the geography type being required, the more the request must be restricted by the 'in' parameter.
+The 'within' parameter is optional, or required, depending upon the geography type. The smaller the geography type being required, the more the request must be restricted by the 'within' parameter.
 
 ## Census 2010 SF1 Examples and Supported Geography
 
@@ -83,39 +90,39 @@ The 'in' parameter is optional, or required, depending upon the geography type. 
 
 Retrieve fields for all States:
 
-`@client.find('P0010001', 'STATE')`
+`@client.where({ fields: 'P0010001', level: 'STATE' })`
 
 Retrieve fields for California (geoid: 06):
 
-`@client.find('P0010001', 'STATE:06')`
+`@client.where({ fields: 'P0010001', level: 'STATE:06' })`
 
 Retrieve fields for California and Alaska:
 
-`@client.find('P0010001', 'STATE:06,02')`
+`@client.where({ fields: 'P0010001', level: 'STATE:06,02' })`
 
 #### COUNTY - *(050) state-county*
 
 Retrieve fields for all Counties:
 
-`@client.find('P0010001', 'COUNTY')`
+`@client.where({ fields: 'P0010001', level: 'COUNTY' })`
 
 Retrieve fields for Counties in California:
 
-`@client.find('P0010001', 'COUNTY', 'STATE:06')`
+`@client.where({ fields: 'P0010001', level: 'COUNTY', within: 'STATE:06' })`
 
 Retrieve fields for a specific County in California:
 
-`@client.find('P0010001', 'COUNTY:001', 'STATE:06')`
+`@client.where({ fields: 'P0010001', level: 'COUNTY:001', within: 'STATE:06' })`
 
 #### COUSUB - *(060) state-county-county subdivision*
 
 Retrieve fields for all County Subdivisions within a specific County:
 
-`@client.find('P0010001', 'COUSUB', 'STATE:02+COUNTY:290')`
+`@client.where({ fields: 'P0010001', level: 'COUSUB', within: 'STATE:02+COUNTY:290' })`
 
 Retrieve fields for a specific County Subdivision within a specific County:
 
-`@client.find('P0010001', 'COUSUB:86690', 'STATE:02+COUNTY:290')`
+`@client.where({ fields: 'P0010001', level: 'COUSUB:86690', within: 'STATE:02+COUNTY:290' })`
 
 Note: You must also specify the State the County belongs to.
 
@@ -123,231 +130,231 @@ Note: You must also specify the State the County belongs to.
 
 Retrieve fields for all Subminor Civil Subdivisions within a specific County Subdivision:
 
-`@client.find('P0010001', 'SUBMCD', 'STATE:72+COUNTY:127+COUSUB:79693')`
+`@client.where({ fields: 'P0010001', level: 'SUBMCD', within: 'STATE:72+COUNTY:127+COUSUB:79693' })`
 
 Retrieve fields for a specific Subminor Civil Subdivisions within a specific County Subdivision:
 
-`@client.find('P0010001', 'SUBMCD:02350', 'STATE:72+COUNTY:127+COUSUB:79693')`
+`@client.where({ fields: 'P0010001', level: 'SUBMCD:02350', within: 'STATE:72+COUNTY:127+COUSUB:79693' })`
 
 #### TABBLOCK - *(101) state-county-tract-block*
 
 Retrieve fields for all Blocks within a specific Tract
 
-`@client.find('P0010001', 'TABBLOCK', 'STATE:02+COUNTY:290+TRACT:00100')`
+`@client.where({ fields: 'P0010001', level: 'TABBLOCK', within: 'STATE:02+COUNTY:290+TRACT:00100' })`
 
 Retrieve fields for a specific Subminor Civil Subdivisions within a specific County Subdivision:
 
-`@client.find('P0010001', 'SUBMCD:02350', 'STATE:72+COUNTY:127+COUSUB:79693')`
+`@client.where({ fields: 'P0010001', level: 'SUBMCD:02350', within: 'STATE:72+COUNTY:127+COUSUB:79693' })`
 
 #### TRACT - *(140) state-county-tract*
 
 Retrieve fields for all Tracts within a specific County:
 
-`@client.find('P0010001', 'TRACT', 'STATE:02+COUNTY:170')`
+`@client.where({ fields: 'P0010001', level: 'TRACT', within: 'STATE:02+COUNTY:170' })`
 
 Retrieve fields for a specific Tract within a specific County:
 
-`@client.find('P0010001', 'TRACT:000101', 'STATE:02+COUNTY:170')`
+`@client.where({ fields: 'P0010001', level: 'TRACT:000101', within: 'STATE:02+COUNTY:170' })`
 
 #### BG - *(150) state-county- tract-block group*
 
 Retrieve fields for all Block Groups within a specific Tract:
 
-`@client.find('P0010001', 'BG', 'STATE:02+COUNTY:170+TRACT:000101')`
+`@client.where({ fields: 'P0010001', level: 'BG', within: 'STATE:02+COUNTY:170+TRACT:000101' })`
 
 Retrieve fields for a specific Block Group within a specific Tract:
 
-`@client.find('P0010001', 'BG:1', 'STATE:02+COUNTY:170+TRACT:000101')`
+`@client.where({ fields: 'P0010001', level: 'BG:1', within: 'STATE:02+COUNTY:170+TRACT:000101' })`
 
 #### PLACE -*(160) state-place*
 
 Retrieve fields for all Places:
 
-`@client.find('P0010001', 'PLACE')`
+`@client.where({ fields: 'P0010001', level: 'PLACE' })`
 
 Retrieve fields for all Places within a specific State:
 
-`@client.find('P0010001', 'PLACE', 'STATE:06')`
+`@client.where({ fields: 'P0010001', level: 'PLACE', within: 'STATE:06' })`
 
 Retrieve fields for a specific place within a specific State:
 
-`@client.find('P0010001', 'PLACE:00135', 'STATE:06')`
+`@client.where({ fields: 'P0010001', level: 'PLACE:00135', within: 'STATE:06' })`
 
 #### ANRC - *(260) state-alaska native regional corporation*
 
 Retrieve fields for all Alaska Native Regional Corporations:
 
-`@client.find('P0010001', 'ANRC')`
+`@client.where({ fields: 'P0010001', level: 'ANRC' })`
 
 Retrieve fields for all Alaska Native Regional Corporations within a specific State:
 
-`@client.find('P0010001', 'ANRC', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'ANRC', within: 'STATE:02' })`
 
 Retrieve fields for all Alaska Native Regional Corporations within a specific State:
 
-`@client.find('P0010001', 'ANRC:00590', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'ANRC:00590', within: 'STATE:02' })`
 
 #### AIANNH - *(280) state-american indian area/alaska native area/hawaiian home land*
 
 Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home Land:
 
-`@client.find('P0010001', 'AIANNH')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH' })`
 
 Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home Land within a specific State:
 
-`@client.find('P0010001', 'AIANNH', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH', within: 'STATE:02 }')`
 
 Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian Home Land within a specific State:
 
-`@client.find('P0010001', 'AIANNH:03800', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH:03800', within: 'STATE:02' })`
 
 #### AITS - *(281) state-american indian area-tribal subdivision*
 
 Retrieve fields for all American Indian Area-Tribal Subdivisions:
 
-__DOES NOT WORK__: `@client.find('P0010001', 'AITS')` 
+__DOES NOT WORK__: `@client.where({ fields: 'P0010001', level: 'AITS' })`
 
 Retrieve fields for all American Indian Area-Tribal Subdivisions in a specific American Indian Area:
 
-`@client.find('P0010001', 'AITS', 'STATE:40+AIANNH:13735')`
+`@client.where({ fields: 'P0010001', level: 'AITS', within: 'STATE:40+AIANNH:13735' })`
 
 Retrieve fields for a specific American Indian Area-Tribal Subdivision in a specific American Indian Area:
 
-`@client.find('P0010001', 'AITS:83127', 'STATE:40+AIANNH:13735')`
+`@client.where({ fields: 'P0010001', level: 'AITS:83127', within: 'STATE:40+AIANNH:13735' })`
 
 #### CBSA - *(320) state-metropolitan statistical area/micropolitan statistical area*
 
 Retrieve fields from all Metropolitan Statistical Areas / Micropolitan Statistical Areas in a specific State:
 
-`@client.find('P0010001', 'CBSA', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'CBSA', within: 'STATE:02' })`
 
 Retrieve fields from a specific Metropolitan Statistical Areas / Micropolitan Statistical Areas in a specific State:
 
-`@client.find('P0010001', 'CBSA:11260', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'CBSA:11260', within: 'STATE:02' })`
 
 #### METDIV - *(323)  state-metropolitan statistical area/micropolitan statistical area- metropolitan division*
 
 Retrieve fields from all Metropolitan Divisions in a specific Metropolitan Statistical Area / Micropolitan Statistical Area:
 
-`@client.find('P0010001', 'METDIV', 'STATE:06+CBSA:31100')`
+`@client.where({ fields: 'P0010001', level: 'METDIV', within: 'STATE:06+CBSA:31100' })`
 
 Retrieve fields from all Metropolitan Division in a specific Metropolitan Statistical Area / Micropolitan Statistical Area:
 
-`@client.find('P0010001', 'METDIV', 'STATE:06+CBSA:31100')`
+`@client.where({ fields: 'P0010001', level: 'METDIV', within: 'STATE:06+CBSA:31100' })`
 
 Retrieve fields from a specific Metropolitan Division in a specific Metropolitan Statistical Area / Micropolitan Statistical Area:
 
-`@client.find('P0010001', 'METDIV:31084', 'STATE:06+CBSA:31100')`
+`@client.where({ fields: 'P0010001', level: 'METDIV:31084', within: 'STATE:06+CBSA:31100' })`
 
 #### CSA - *(340) - state-combined statistical area*
 
 Retrieve fields from all Combined Statistical Areas in a specific State:
 
-`@client.find('P0010001', 'CSA', 'STATE:24')`
+`@client.where({ fields: 'P0010001', level: 'CSA', within: 'STATE:24' })`
 
 Retrieve fields from a specific Combined Statistical Area in a specific State:
 
-`@client.find('P0010001', 'CSA:428', 'STATE:24')`
+`@client.where({ fields: 'P0010001', level: 'CSA:428', within: 'STATE:24' })`
 
 #### CD - *(500) state-congressional district*
 
 Retrieve fields from all Congressional Districts in a specific State:
 
-`@client.find('P0010001', 'CD', 'STATE:24')`
+`@client.where({ fields: 'P0010001', level: 'CD', within: 'STATE:24' })`
 
 Retrieve fields from a specific Congressional District in a specific State:
 
-`@client.find('P0010001', 'CD:01', 'STATE:24')`
+`@client.where({ fields: 'P0010001', level: 'CD:01', within: 'STATE:24' })`
 
 #### COUNTY (Remainder) - *(510) state-congressional district-county*
 
 Retrieve fields for all Counties within a specific Congressional District:
 
-`@client.find('P0010001', 'COUNTY', 'STATE:24+CD:01')`
+`@client.where({ fields: 'P0010001', level: 'COUNTY', within: 'STATE:24+CD:01' })`
 
 Retrieve fields for a specific County within a specific Congressional District:
 
-`@client.find('P0010001', 'COUNTY:01', 'STATE:24+CD:01')`
+`@client.where({ fields: 'P0010001', level: 'COUNTY:01', within: 'STATE:24+CD:01' })`
 
 #### TRACT (Remainder) - *(511) state-congressional district-county-tract*
 
 Retrieve fields for all Tracts within a specific Congressional District, County Remainder:
 
-`@client.find('P0010001', 'TRACT', 'STATE:24+CD:01+COUNTY:003')`
+`@client.where({ fields: 'P0010001', level: 'TRACT', within: 'STATE:24+CD:01+COUNTY:003' })`
 
 Retrieve fields for a specific County within a specific Congressional District, County Remainder:
 
-`@client.find('P0010001', 'TRACT:702100', 'STATE:24+CD:01+COUNTY:003')`
+`@client.where({ fields: 'P0010001', level: 'TRACT:702100', within: 'STATE:24+CD:01+COUNTY:003' })`
 
 ### COUSUB (Remainder) - *(521) state-congressional district-county-county subdivision*
 
 Retrieve fields for all County Subdivisions within a specific Congressional District, County Remainder:
 
-`@client.find('P0010001', 'COUSUB', 'STATE:24+CD:01+COUNTY:003')`
+`@client.where({ fields: 'P0010001', level: 'COUSUB', within: 'STATE:24+CD:01+COUNTY:003' })`
 
 Retrieve fields for a specific County Subdivision within a specific Congressional District, County Remainder:
 
-`@client.find('P0010001', 'COUSUB:90100', 'STATE:24+CD:01+COUNTY:003')`
+`@client.where({ fields: 'P0010001', level: 'COUSUB:90100', within: 'STATE:24+CD:01+COUNTY:003' })`
 
 #### PLACE (Remainder) - *(531) state congressional district-place*
 
 Retrieve fields for all Places within a specific Congressional District:
 
-`@client.find('P0010001', 'PLACE', 'STATE:24+CD:01')`
+`@client.where({ fields: 'P0010001', level: 'PLACE', within: 'STATE:24+CD:01' })`
 
 Retrieve fields for a specific Place within a specific Congressional District, County Remainder:
 
-`@client.find('P0010001', 'PLACE:00125', 'STATE:24+CD:01')`
+`@client.where({ fields: 'P0010001', level: 'PLACE:00125', within: 'STATE:24+CD:01' })`
 
 #### AIANNH (Remainder) - *550) state-￼￼congressional district-american indian area/alaska native area/hawaiian home land*
 
 Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home Lands within a specific Congressional District:
 
-`@client.find('P0010001', 'AIANNH', 'STATE:02+CD:00')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH', within: 'STATE:02+CD:00' })`
 
 Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian Home Land  within a specific Congressional District:
 
-`@client.find('P0010001', 'AIANNH:03800', 'STATE:02+CD:00')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH:03800', within: 'STATE:02+CD:00' })`
 
 #### ANRC (Remainder) - *(560) state-congressional district-alaska native regional corporation*
 
 Retrieve fields for all Alaska Native Regional Corporations within a specific Congressional District:
 
-`@client.find('P0010001', 'AIANNH', 'STATE:02+CD:00')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH', within: 'STATE:02+CD:00' })`
 
 Retrieve fields for a specific Alaska Native Regional Corporation  within a specific Congressional District:
 
-`@client.find('P0010001', 'AIANNH:00590', 'STATE:02+CD:00')`
+`@client.where({ fields: 'P0010001', level: 'AIANNH:00590', within: 'STATE:02+CD:00' })`
 
 #### SLDU - *(610￼) state-state legislative district (upper chamber)*
 
 Retrieve fields for all State Legislative Districts (Upper Chamber) within a State:
 
-`@client.find('P0010001', 'SLDU', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'SLDU', within: 'STATE:02' })`
 
 Retrieve fields for a specific State Legislative District (Upper Chamber) within a State:
 
-`@client.find('P0010001', 'SLDU:00A', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'SLDU:00A', within: 'STATE:02' })`
 
 #### SLDU - *(620) state-state legislative district (lower chamber)*
 
 Retrieve fields for all State Legislative Districts (Lower Chamber) within a State:
 
-`@client.find('P0010001', 'SLDL', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'SLDL', within: 'STATE:02' })`
 
 Retrieve fields for a specific State Legislative District (Lower Chamber) within a State:
 
-`@client.find('P0010001', 'SLDL:001', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'SLDL:001', within: 'STATE:02' })`
 ￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼
 #### ZCTA5 - *(871) state-zip code tabulation area*
 
 Retrieve fields for all Zip Code Tabulation Areas within a specific State:
 
-`@client.find('P0010001', 'ZCTA5', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'ZCTA5', within: 'STATE:02' })`
 
 Retrieve fields for a specific Zip Code Tabulation Area within a specific State:
 
-`@client.find('P0010001', 'ZCTA5:99501', 'STATE:02')`
+`@client.where({ fields: 'P0010001', level: 'ZCTA5:99501', within: 'STATE:02' })`
 
 ## ACS5 2010 Examples and Supported Geography
 
@@ -357,39 +364,39 @@ Querying the Census Bureau for ACS5 data is done in the same format as querying 
 
 Retrieve fields for all States:
 
-`@client.find('B00001_001E', 'STATE')`
+`@client.where({ fields: 'B00001_001E', level: 'STATE' })`
 
 Retrieve fields for California (geoid: 06):
 
-`@client.find('B00001_001E', 'STATE:06')`
+`@client.where({ fields: 'B00001_001E', level: 'STATE:06' })`
 
 Retrieve fields for California and Alaska:
 
-`@client.find('B00001_001E', 'STATE:06,02')`
+`@client.where({ fields: 'B00001_001E', level: 'STATE:06,02' })`
 
 #### COUNTY - *(050) state-county*
 
 Retrieve fields for all Counties:
 
-`@client.find('B00001_001E', 'COUNTY')`
+`@client.where({ fields: 'B00001_001E', level: 'COUNTY' })`
 
 Retrieve fields for Counties in California:
 
-`@client.find('B00001_001E', 'COUNTY', 'STATE:06')`
+`@client.where({ fields: 'B00001_001E', level: 'COUNTY', within: 'STATE:06' })`
 
 Retrieve fields for a specific County in California:
 
-`@client.find('B00001_001E', 'COUNTY:001', 'STATE:06')`
+`@client.where({ fields: 'B00001_001E', level: 'COUNTY:001', within: 'STATE:06' })`
 
 #### COUSUB - *(060) state-county-county subdivision*
 
 Retrieve fields for all County Subdivisions within a specific County:
 
-`@client.find('B00001_001E', 'COUSUB', 'STATE:02+COUNTY:290')`
+`@client.where({ fields: 'B00001_001E', level: 'COUSUB', within: 'STATE:02+COUNTY:290' })`
 
 Retrieve fields for a specific County Subdivision within a specific County:
 
-`@client.find('B00001_001E', 'COUSUB:86690', 'STATE:02+COUNTY:290')`
+`@client.where({ fields: 'B00001_001E', level: 'COUSUB:86690', within: 'STATE:02+COUNTY:290' })`
 
 Note: You must also specify the State the County belongs to.
 
@@ -397,89 +404,89 @@ Note: You must also specify the State the County belongs to.
 
 Retrieve fields for all Subminor Civil Subdivisions within a specific County Subdivision:
 
-`@client.find('B00001_001E', 'SUBMCD', 'STATE:72+COUNTY:127+COUSUB:79693')`
+`@client.where({ fields: 'B00001_001E', level: 'SUBMCD', within: 'STATE:72+COUNTY:127+COUSUB:79693' })`
 
 Retrieve fields for a specific Subminor Civil Subdivision within a specific County Subdivision:
 
-`@client.find('B00001_001E', 'SUBMCD:02350', 'STATE:72+COUNTY:127+COUSUB:79693')`
+`@client.where({ fields: 'B00001_001E', level: 'SUBMCD:02350', within: 'STATE:72+COUNTY:127+COUSUB:79693' })`
 
 #### PLACE - *(070) state-county-county subdivision-place*
 
 Retrieve fields for all Places within a specific County Subdivision:
 
-`@client.find('B00001_001E', 'PLACE', 'STATE:02+COUNTY:290+COUSUB:86690')`
+`@client.where({ fields: 'B00001_001E', level: 'PLACE', within: 'STATE:02+COUNTY:290+COUSUB:86690' })`
 
 Retrieve fields for a specific Place within a specific County Subdivision:
 
-`@client.find('B00001_001E', 'PLACE:05750', 'STATE:02+COUNTY:290+COUSUB:86690')`
+`@client.where({ fields: 'B00001_001E', level: 'PLACE:05750', within: 'STATE:02+COUNTY:290+COUSUB:86690' })`
 
 #### TRACT - *(080) state-county-county subdivision-place-tract*
 
 Retrieve fields for all Tracts within a specific Place:
 
-`@client.find('B00001_001E', 'TRACT', 'STATE:02+COUNTY:290+COUSUB:86690+PLACE:05750')`
+`@client.where({ fields: 'B00001_001E', level: 'TRACT', within: 'STATE:02+COUNTY:290+COUSUB:86690+PLACE:05750' })`
 
 Retrieve fields for a specific Tract within a specific Place:
 
-`@client.find('B00001_001E', 'TRACT:000100', 'STATE:02+COUNTY:290+COUSUB:86690+PLACE:05750')`
+`@client.where({ fields: 'B00001_001E', level: 'TRACT:000100', within: 'STATE:02+COUNTY:290+COUSUB:86690+PLACE:05750' })`
 
 #### TRACT - *(140) state-county-tract*
 
 Retrieve fields for all Tracts within a specific County:
 
-`@client.find('B00001_001E', 'TRACT', 'STATE:02+COUNTY:170')`
+`@client.where({ fields: 'B00001_001E', level: 'TRACT', within: 'STATE:02+COUNTY:170' })`
 
 Retrieve fields for a specific Tract within a specific County:
 
-`@client.find('B00001_001E', 'TRACT:000101', 'STATE:02+COUNTY:170')`
+`@client.where({ fields: 'B00001_001E', level: 'TRACT:000101', within: 'STATE:02+COUNTY:170' })`
 
 #### BG - *(150) ￼￼￼￼￼￼￼￼￼state-county- tract-block group*
 
 Retrieve fields for all Block Groups within a specific Tract:
 
-`@client.find('B00001_001E', 'BG', 'STATE:02+COUNTY:170+TRACT:000101')`
+`@client.where({ fields: 'B00001_001E', level: 'BG', within: 'STATE:02+COUNTY:170+TRACT:000101' })`
 
 Retrieve fields for a specific Block Group within a specific Tract:
 
-`@client.find('B00001_001E', 'BG:1', 'STATE:02+COUNTY:170+TRACT:000101')`
+`@client.where({ fields: 'B00001_001E', level: 'BG:1', within: 'STATE:02+COUNTY:170+TRACT:000101' })`
 
 #### PLACE - *(160) state-place*
 
 Retrieve fields for all Places:
 
-`@client.find('B00001_001E', 'PLACE')`
+`@client.where({ fields: 'B00001_001E', level: 'PLACE' })`
 
 Retrieve fields for all Places within a specific State:
 
-`@client.find('B00001_001E', 'PLACE', 'STATE:06')`
+`@client.where({ fields: 'B00001_001E', level: 'PLACE', within: 'STATE:06' })`
 
 Retrieve fields for a specific place within a specific State:
 
-`@client.find('B00001_001E', 'PLACE:00135', 'STATE:06')`
+`@client.where({ fields: 'B00001_001E', level: 'PLACE:00135', within: 'STATE:06' })`
 
 #### AIANNH - *(280) state-american indian area/alaska native area/hawaiian home land*
 
 Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home Land:
 
-`@client.find('B00001_001E', 'AIANNH')`
+`@client.where({ fields: 'B00001_001E', level: 'AIANNH' })`
 
 Retrieve fields for all American Indian Area/Alaska Native Area/Hawaiian Home Land within a specific State:
 
-`@client.find('B00001_001E', 'AIANNH', 'STATE:02')`
+`@client.where({ fields: 'B00001_001E', level: 'AIANNH', within: 'STATE:02' })`
 
 Retrieve fields for a specific American Indian Area/Alaska Native Area/Hawaiian Home Land within a specific State:
 
-`@client.find('B00001_001E', 'AIANNH:03800', 'STATE:02')`
+`@client.where({ fields: 'B00001_001E', level: 'AIANNH:03800', within: 'STATE:02' })`
 
 #### CD - *(500) state-congressional district*
 
 Retrieve fields from all Congressional Districts in a specific State:
 
-`@client.find('B00001_001E', 'CD', 'STATE:24')`
+`@client.where({ fields: 'B00001_001E', level: 'CD', within: 'STATE:24' })`
 
 Retrieve fields from a specific Congressional District in a specific State:
 
-`@client.find('B00001_001E', 'CD:01', 'STATE:24')`
+`@client.where({ fields: 'B00001_001E', level: 'CD:01', within: 'STATE:24' })`
 
 ## Additional Resources
 

@@ -26,8 +26,15 @@ module CensusApi
     end
 
     def find(fields, level, *within)
+      warn "[DEPRECATION] `find` is deprecated.  Please use `where` with options hash instead."
       raise "Client has not been assigned a dataset to query. Try @client.dataset = 'SF1' or anything from #{DATASETS}" if self.dataset.nil?
       Request.find(dataset, {key: @api_key,  vintage: @api_vintage, fields: fields, level: level, within: within})
+    end
+
+    def where(options ={ key: @api_key,  vintage: @api_vintage })
+      raise "Client has not been assigned a dataset to query. Try @client.dataset = 'SF1' or anything from #{DATASETS}" if self.dataset.nil?
+      [:fields, :level].each{|f| raise  ArgumentError, "Missing #{f.to_s } parameter required" if options[f].nil? }
+      Request.find(dataset, options)
     end
   end
 end
