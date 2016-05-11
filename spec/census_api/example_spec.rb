@@ -7,16 +7,6 @@ describe 'CensusApi::Examples', :vcr do
     before(:each) do
       client.dataset = 'sf1'
     end
-    describe '#find' do
-      CensusExamples::SF1.each do |query|
-        it "should retrieve #{query.join(",")}" do
-          response = client.send(:find, query[0], query[1], query[2])
-          expect{ response }.not_to raise_error
-          expect(response).to be_a(Array)
-          expect(response.first).to include('name')
-        end
-      end
-    end
     describe '#where' do
       CensusExamples::SF1.each do |query|
         it "should retrieve #{query.join(",")}" do
@@ -32,16 +22,6 @@ describe 'CensusApi::Examples', :vcr do
   describe 'acs5' do
     before(:each) do
       client.dataset = 'acs5'
-    end
-    describe '#find' do
-      CensusExamples::ACS5.each do |query|
-        it "should retrieve #{query.join(",")}" do
-          response = client.send(:find, query[0], query[1], query[2])
-          expect{ response }.not_to raise_error
-          expect(response).to be_a(Array)
-          expect(response.first).to include('name')
-        end
-      end
     end
     describe '#where' do
       CensusExamples::ACS5.each do |query|

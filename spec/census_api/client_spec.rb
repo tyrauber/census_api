@@ -61,28 +61,8 @@ describe CensusApi::Client, :vcr do
     end
   end
 
-  describe '#find' do
-
-    let(:source) { 'sf1' }
-    let(:options) do
-      { key: api_key,
-        vintage: 2010,
-        fields: 'P0010001',
-        level: 'STATE:06',
-        within: [] }
-    end
-
-    it 'should be deprecated' do
-      @client = CensusApi::Client.new(api_key, dataset: source)
-      expect(@client).to receive(:warn)
-      .with('[DEPRECATION] `find` is deprecated. Please use `where` instead.')
-      @client.find(options[:fields], options[:level])
-    end
-  end
-
   describe '#where' do
 
-    # TODO: dedupe this
     let(:source) { 'sf1' }
     let(:options) do
       { key: api_key,

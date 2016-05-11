@@ -61,13 +61,6 @@ Then, use `Client#where` with an options hash to query for Census data. The fiel
 
 ```
 
-The `Client.find` method which takes positional arguments is still available, but deprecated.
-
-```ruby
-@client.find('P0010001', 'COUNTY:001', 'STATE:06')
-
-```
-
 For a list of the fields available for each dataset, review the reference PDFs linked at the bottom of this document.
 
 #### Parameters

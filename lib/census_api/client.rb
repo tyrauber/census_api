@@ -3,7 +3,6 @@ module CensusApi
   # client#initialize method takes an api_key and options hash,
   # which includes dataset and vintage. client#where method accepts
   # an options hash, including fields, level and within. Within is optional.
-  # client#find takes positional arguments and is now deprecated.
   class Client
     require 'rest-client'
 
@@ -21,19 +20,6 @@ module CensusApi
       if options[:dataset] && DATASETS.include?(options[:dataset].downcase)
         @dataset = options[:dataset].downcase
       end
-    end
-
-    def find(fields, level, *within)
-      warn '[DEPRECATION] `find` is deprecated. Please use `where` instead.'
-      fail "Client requires a dataset (#{DATASETS})." if @dataset.nil?
-      options = {
-        key: @api_key,
-        vintage: @api_vintage,
-        fields: fields,
-        level: level,
-        within: within
-      }
-      Request.find(dataset, options)
     end
 
     def where(options={})
