@@ -184,23 +184,19 @@ describe CensusApi::Request, :vcr do
 
   context '#format' do
     it 'should add wildcard after reformatting geography type without id' do
-      expect(CensusApi::Request.format('COUSUB', false)).to
-      be('county+subdivision:*')
+      expect(CensusApi::Request.format('COUSUB', false)).to eq('county+subdivision:*')
     end
 
     it 'should maintain geography id after reformatting geography type' do
-      expect(CensusApi::Request.format('COUSUB:86690', false)).to
-      be('county+subdivision:86690')
+      expect(CensusApi::Request.format('COUSUB:86690', false)).to eq('county+subdivision:86690')
     end
 
     it 'should truncate geography type AIANNH' do
-      expect(CensusApi::Request.format('AIANNH', true)).to
-      be('american+indian+area:*')
+      expect(CensusApi::Request.format('AIANNH', true)).to eq('american+indian+area:*')
     end
 
     it 'should not truncate geography type CBSA' do
-      expect(CensusApi::Request.format('CBSA', true)).to
-      be('metropolitan+statistical+area/micropolitan+statistical+area:*')
+      expect(CensusApi::Request.format('CBSA', true)).to eq('metropolitan+statistical+area/micropolitan+statistical+area:*')
     end
   end
 end
