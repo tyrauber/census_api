@@ -82,16 +82,14 @@ describe CensusApi::Client, :vcr do
 
   describe '#where' do
 
+    # TODO: dedupe this
     let(:source) { 'sf1' }
-
     let(:options) do
-      {
-        key: api_key,
+      { key: api_key,
         vintage: 2010,
         fields: 'P0010001',
         level: 'STATE:06',
-        within: []
-      }
+        within: [] }
     end
 
     let(:full_params) do
