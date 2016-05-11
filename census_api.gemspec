@@ -21,10 +21,9 @@ Gem::Specification.new do |gem|
                       .map { |f| File.basename(f) }
   gem.require_paths = ['lib']
 
-  gem.add_runtime_dependency 'rest-client'
-  gem.add_runtime_dependency 'hpricot'
+  gem.add_runtime_dependency 'http'
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'webmock'
+  gem.add_development_dependency 'webmock', '< 2.0'
   gem.add_development_dependency 'vcr'
   gem.add_development_dependency 'rubocop'
 end

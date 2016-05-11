@@ -4,8 +4,7 @@ module CensusApi
   # client#find method accepts source and options hash, which include
   # :key, :fields, :level, :within and :vintage.
   class Request
-    require 'restclient'
-    require 'hpricot'
+    require 'http'
     require 'json'
     require 'yaml'
 
@@ -15,7 +14,7 @@ module CensusApi
 
     def initialize(url, vintage, source, options)
       uri = "#{url}/#{vintage}/#{source}?#{to_params(options)}"
-      @response = RestClient.get(uri.to_s) do |response, _req, _res, _blk|
+      @response = HTTP.get(uri.to_s) do |response, _req, _res, _blk|
         response
       end
     end
