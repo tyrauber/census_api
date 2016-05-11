@@ -31,14 +31,14 @@ describe CensusApi::Request, :vcr do
         end
 
         it 'should have 52 results' do
-          @collection.count.should == 52
+          expect(@collection.count).to eq(52)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should include(test[:field])
-            result.should include('name')
-            result.should include('state')
+            expect(result).to include(test[:field])
+            expect(result).to include('name')
+            expect(result).to include('state')
           end
         end
       end
@@ -60,12 +60,12 @@ describe CensusApi::Request, :vcr do
         end
 
         it 'should have one result' do
-          @collection.count.should == 1
+          expect(@collection.count).to eq(1)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should == test[:results][0]
+            expect(result).to eq(test[:results][0])
           end
         end
       end
@@ -88,14 +88,14 @@ describe CensusApi::Request, :vcr do
         end
 
         it 'should have one result' do
-          @collection.count.should == 58
+          expect(@collection.count).to eq(58)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should include(test[:field])
-            result.should include('name')
-            result.should include('state')
+            expect(result).to include(test[:field])
+            expect(result).to include('name')
+            expect(result).to include('state')
           end
         end
       end
@@ -118,12 +118,12 @@ describe CensusApi::Request, :vcr do
         end
 
         it 'should have one result' do
-          @collection.count.should == 1
+          expect(@collection.count).to eq(1)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should == test[:results][1]
+            expect(result).to eq(test[:results][1])
           end
         end
       end
@@ -146,7 +146,7 @@ describe CensusApi::Request, :vcr do
 
         it "#{source} should be valid" do
           @collection = CensusApi::Request.find(source, params)
-          @collection.count.should == 52
+          expect(@collection.count).to eq(52)
         end
       end
     end
@@ -173,33 +173,33 @@ describe CensusApi::Request, :vcr do
       end
 
       it 'should be valid' do
-        @collection_2010.count.should eq(52)
+        expect(@collection_2010.count).to eq(52)
       end
 
       it 'should not be same result set' do
-        @collection_2010.should_not == @collection_2012
+        expect(@collection_2010).not_to eq(@collection_2012)
       end
     end
   end
 
   context '#format' do
     it 'should add wildcard after reformatting geography type without id' do
-      CensusApi::Request.format('COUSUB', false).should
+      expect(CensusApi::Request.format('COUSUB', false)).to
       be('county+subdivision:*')
     end
 
     it 'should maintain geography id after reformatting geography type' do
-      CensusApi::Request.format('COUSUB:86690', false).should
+      expect(CensusApi::Request.format('COUSUB:86690', false)).to
       be('county+subdivision:86690')
     end
 
     it 'should truncate geography type AIANNH' do
-      CensusApi::Request.format('AIANNH', true).should
+      expect(CensusApi::Request.format('AIANNH', true)).to
       be('american+indian+area:*')
     end
 
     it 'should not truncate geography type CBSA' do
-      CensusApi::Request.format('CBSA', true).should
+      expect(CensusApi::Request.format('CBSA', true)).to
       be('metropolitan+statistical+area/micropolitan+statistical+area:*')
     end
   end

@@ -12,8 +12,8 @@ describe 'CensusApi::Examples', :vcr do
         it "should retrieve #{query.join(",")}" do
           response = client.send(:find, query[0], query[1], query[2])
           expect{ response }.not_to raise_error
-          response.should be_a(Array)
-          response.first.should include('name')
+          expect(response).to be_a(Array)
+          expect(response.first).to include('name')
         end
       end
     end
@@ -22,8 +22,8 @@ describe 'CensusApi::Examples', :vcr do
         it "should retrieve #{query.join(",")}" do
           response = client.send(:where, {fields: query[0], level: query[1], within: query[2]})
           expect{ response }.not_to raise_error
-          response.should be_a(Array)
-          response.first.should include('name')
+          expect(response).to be_a(Array)
+          expect(response.first).to include('name')
         end
       end
     end
@@ -38,8 +38,8 @@ describe 'CensusApi::Examples', :vcr do
         it "should retrieve #{query.join(",")}" do
           response = client.send(:find, query[0], query[1], query[2])
           expect{ response }.not_to raise_error
-          response.should be_a(Array)
-          response.first.should include('name')
+          expect(response).to be_a(Array)
+          expect(response.first).to include('name')
         end
       end
     end
@@ -48,8 +48,8 @@ describe 'CensusApi::Examples', :vcr do
         it "should retrieve #{query.join(",")}" do
           response = client.send(:where, {fields: query[0], level: query[1], within: query[2]})
           expect{ response }.not_to raise_error
-          response.should be_a(Array)
-          response.first.should include('name')
+          expect(response).to be_a(Array)
+          expect(response.first).to include('name')
         end
       end
     end
