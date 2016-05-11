@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rest-client'
   gem.add_runtime_dependency 'hpricot'
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'fakeweb'
+  gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'vcr'
   gem.add_development_dependency 'rubocop'
 end
