@@ -1,10 +1,8 @@
 require 'spec_helper'
 
-describe CensusApi::Client do
+describe CensusApi::Client, :vcr do
 
-  describe 'client initialization' do
-
-    use_vcr_cassette 'initialize_client'
+  describe 'initialize client' do
 
     it 'should not initialize without an api_key' do
       lambda { CensusApi::Client.new }.should raise_error
@@ -16,9 +14,7 @@ describe CensusApi::Client do
     end
   end
 
-  describe 'client and dataset initialization' do
-
-    use_vcr_cassette 'initialize_client_and_dataset'
+  describe 'initialize client and dataset' do
 
     it 'should initialize with an api_key and dataset' do
       dataset = 'SF1'
@@ -30,7 +26,6 @@ describe CensusApi::Client do
 
   describe 'datasets' do
 
-    use_vcr_cassette 'find_method'
     describe 'sf1' do
       let(:source) { 'sf1' }
       let(:options) do
@@ -68,8 +63,6 @@ describe CensusApi::Client do
 
   describe '#find' do
 
-    use_vcr_cassette 'find_method'
-
     let(:source) { 'sf1' }
     let(:options) do
       { key: api_key,
@@ -88,7 +81,6 @@ describe CensusApi::Client do
   end
 
   describe '#where' do
-    use_vcr_cassette 'where_method'
 
     let(:source) { 'sf1' }
 

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe 'CensusApi::Examples' do
-  use_vcr_cassette 'census_api examples'
+describe 'CensusApi::Examples', :vcr do
   let(:client) { CensusApi::Client.new(api_key) }
 
   describe 'sf1' do
@@ -29,7 +28,7 @@ describe 'CensusApi::Examples' do
       end
     end
   end
-  
+
   describe 'acs5' do
     before(:each) do
       client.dataset = 'acs5'

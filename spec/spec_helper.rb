@@ -8,7 +8,3 @@ require 'support/census_examples'
 def api_key
   RSPEC_API_KEY
 end
-
-RSpec.configure do |config|
-  config.extend VCR::RSpec::Macros
-end

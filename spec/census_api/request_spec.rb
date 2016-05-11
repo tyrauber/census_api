@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CensusApi::Request do
+describe CensusApi::Request, :vcr do
 
   context '#find' do
     [{source: 'sf1', field: 'P0010001', results: [
@@ -14,7 +14,6 @@ describe CensusApi::Request do
     ].each do |test|
 
       describe "#{test[:source]} for a geography type" do
-        use_vcr_cassette "#{test[:source]}_find_states"
 
         let(:params) do
           {
@@ -45,7 +44,6 @@ describe CensusApi::Request do
       end
 
       describe "#{test[:source]} for a geography type and id" do
-        use_vcr_cassette "#{test[:source]}_find_state_with_id"
         let(:params) do
           {
             key: api_key,
@@ -73,7 +71,6 @@ describe CensusApi::Request do
       end
 
       describe "#{test[:source]} for a geography type" do
-        use_vcr_cassette "#{test[:source]}_find_counties_in_state"
 
         let(:params) do
           {
@@ -104,7 +101,6 @@ describe CensusApi::Request do
       end
 
       describe "#{test[:source]} for a geography" do
-        use_vcr_cassette "#{test[:source]}_find_county_in_state"
 
         let(:params) do
           {
@@ -137,7 +133,6 @@ describe CensusApi::Request do
   context 'DATASETS' do
     CensusApi::Client::DATASETS.each do |source|
       describe "#{source}" do
-        use_vcr_cassette "dataset_#{source}_find_states"
         let(:params) do
           {
             key: api_key,
@@ -159,7 +154,6 @@ describe CensusApi::Request do
 
   context '.vintage' do
     describe 'vintage' do
-      use_vcr_cassette 'sf1_find_states_vintage'
 
       let(:params) do
         {
