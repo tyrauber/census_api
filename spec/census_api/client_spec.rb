@@ -5,7 +5,7 @@ describe CensusApi::Client, :vcr do
   describe 'initialize client' do
 
     it 'should not initialize without an api_key' do
-      expect { CensusApi::Client.new }.to raise_error
+      expect { CensusApi::Client.new }.to raise_error(ArgumentError)
     end
 
     it 'should initialize with an api_key' do
