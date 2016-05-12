@@ -4,20 +4,16 @@ module CensusApi
   # client#find method accepts source and options hash, which include
   # :key, :fields, :level, :within and :vintage.
   class Request
-    require 'restclient'
-    require 'hpricot'
+    require 'http'
     require 'json'
     require 'yaml'
 
     attr_accessor :response
 
-    CENSUS_URL = 'http://api.census.gov/data'
-
-    def initialize(url, vintage, source, options)
-      uri = "#{url}/#{vintage}/#{source}?#{to_params(options)}"
-      @response = RestClient.get(uri.to_s) do |response, _req, _res, _blk|
-        response
-      end
+    def initialize(vintage, source, options)
+      uri = "/data/#{vintage}/#{source}?#{to_params(options)}"
+      @response = $census_connection.get(uri.to_s)
+      @response.flush
     end
 
     def self.find(source, options = {})
@@ -30,7 +26,7 @@ module CensusApi
         params.merge!(in: format(options[:within][0], true))
       end
       options.merge!(vintage: 2010) unless options[:vintage]
-      request = new(CENSUS_URL, options[:vintage], source, params)
+      request = new(options[:vintage], source, params)
       request.parse_response
     end
 
