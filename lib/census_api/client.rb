@@ -3,9 +3,8 @@ module CensusApi
   # client#initialize method takes an api_key and options hash,
   # which includes dataset and vintage. client#where method accepts
   # an options hash, including fields, level and within. Within is optional.
-  # client#find takes positional arguments and is now deprecated.
   class Client
-    require 'rest-client'
+    require 'http'
 
     attr_reader :api_key, :api_vintage, :options
     attr_accessor :dataset
@@ -23,19 +22,6 @@ module CensusApi
       end
     end
 
-    def find(fields, level, *within)
-      warn '[DEPRECATION] `find` is deprecated. Please use `where` instead.'
-      fail "Client requires a dataset (#{DATASETS})." if @dataset.nil?
-      options = {
-        key: @api_key,
-        vintage: @api_vintage,
-        fields: fields,
-        level: level,
-        within: within
-      }
-      Request.find(dataset, options)
-    end
-
     def where(options={})
       options.merge!(key: @api_key, vintage: @api_vintage)
       fail "Client requires a dataset (#{DATASETS})." if @dataset.nil?
@@ -50,7 +36,7 @@ module CensusApi
 
     def validate_api_key(api_key)
       path = "http://api.census.gov/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
-      response = RestClient.get path
+      response = HTTP.get path
       if response.body.include? 'Invalid Key'
         fail "'#{api_key}' is not a valid API key. Check your key for errors,
         or request a new one at census.gov."

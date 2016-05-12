@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CensusApi::Request do
+describe CensusApi::Request, :vcr do
 
   context '#find' do
     [{source: 'sf1', field: 'P0010001', results: [
@@ -14,7 +14,6 @@ describe CensusApi::Request do
     ].each do |test|
 
       describe "#{test[:source]} for a geography type" do
-        use_vcr_cassette "#{test[:source]}_find_states"
 
         let(:params) do
           {
@@ -32,20 +31,19 @@ describe CensusApi::Request do
         end
 
         it 'should have 52 results' do
-          @collection.count.should == 52
+          expect(@collection.count).to eq(52)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should include(test[:field])
-            result.should include('name')
-            result.should include('state')
+            expect(result).to include(test[:field])
+            expect(result).to include('name')
+            expect(result).to include('state')
           end
         end
       end
 
       describe "#{test[:source]} for a geography type and id" do
-        use_vcr_cassette "#{test[:source]}_find_state_with_id"
         let(:params) do
           {
             key: api_key,
@@ -62,18 +60,17 @@ describe CensusApi::Request do
         end
 
         it 'should have one result' do
-          @collection.count.should == 1
+          expect(@collection.count).to eq(1)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should == test[:results][0]
+            expect(result).to eq(test[:results][0])
           end
         end
       end
 
       describe "#{test[:source]} for a geography type" do
-        use_vcr_cassette "#{test[:source]}_find_counties_in_state"
 
         let(:params) do
           {
@@ -91,20 +88,19 @@ describe CensusApi::Request do
         end
 
         it 'should have one result' do
-          @collection.count.should == 58
+          expect(@collection.count).to eq(58)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should include(test[:field])
-            result.should include('name')
-            result.should include('state')
+            expect(result).to include(test[:field])
+            expect(result).to include('name')
+            expect(result).to include('state')
           end
         end
       end
 
       describe "#{test[:source]} for a geography" do
-        use_vcr_cassette "#{test[:source]}_find_county_in_state"
 
         let(:params) do
           {
@@ -122,12 +118,12 @@ describe CensusApi::Request do
         end
 
         it 'should have one result' do
-          @collection.count.should == 1
+          expect(@collection.count).to eq(1)
         end
 
         it 'should include fields for each result' do
           @collection.each do |result|
-            result.should == test[:results][1]
+            expect(result).to eq(test[:results][1])
           end
         end
       end
@@ -137,7 +133,6 @@ describe CensusApi::Request do
   context 'DATASETS' do
     CensusApi::Client::DATASETS.each do |source|
       describe "#{source}" do
-        use_vcr_cassette "dataset_#{source}_find_states"
         let(:params) do
           {
             key: api_key,
@@ -151,7 +146,7 @@ describe CensusApi::Request do
 
         it "#{source} should be valid" do
           @collection = CensusApi::Request.find(source, params)
-          @collection.count.should == 52
+          expect(@collection.count).to eq(52)
         end
       end
     end
@@ -159,7 +154,6 @@ describe CensusApi::Request do
 
   context '.vintage' do
     describe 'vintage' do
-      use_vcr_cassette 'sf1_find_states_vintage'
 
       let(:params) do
         {
@@ -179,34 +173,30 @@ describe CensusApi::Request do
       end
 
       it 'should be valid' do
-        @collection_2010.count.should eq(52)
+        expect(@collection_2010.count).to eq(52)
       end
 
       it 'should not be same result set' do
-        @collection_2010.should_not == @collection_2012
+        expect(@collection_2010).not_to eq(@collection_2012)
       end
     end
   end
 
   context '#format' do
     it 'should add wildcard after reformatting geography type without id' do
-      CensusApi::Request.format('COUSUB', false).should
-      be('county+subdivision:*')
+      expect(CensusApi::Request.format('COUSUB', false)).to eq('county+subdivision:*')
     end
 
     it 'should maintain geography id after reformatting geography type' do
-      CensusApi::Request.format('COUSUB:86690', false).should
-      be('county+subdivision:86690')
+      expect(CensusApi::Request.format('COUSUB:86690', false)).to eq('county+subdivision:86690')
     end
 
     it 'should truncate geography type AIANNH' do
-      CensusApi::Request.format('AIANNH', true).should
-      be('american+indian+area:*')
+      expect(CensusApi::Request.format('AIANNH', true)).to eq('american+indian+area:*')
     end
 
     it 'should not truncate geography type CBSA' do
-      CensusApi::Request.format('CBSA', true).should
-      be('metropolitan+statistical+area/micropolitan+statistical+area:*')
+      expect(CensusApi::Request.format('CBSA', true)).to eq('metropolitan+statistical+area/micropolitan+statistical+area:*')
     end
   end
 end
