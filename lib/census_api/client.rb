@@ -5,6 +5,7 @@ module CensusApi
   # an options hash, including fields, level and within. Within is optional.
   class Client
     require 'http'
+    $census_connection = HTTP.persistent "http://api.census.gov"
 
     attr_reader :api_key, :api_vintage, :options
     attr_accessor :dataset
@@ -35,9 +36,9 @@ module CensusApi
     protected
 
     def validate_api_key(api_key)
-      path = "http://api.census.gov/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
-      response = HTTP.get path
-      if response.body.include? 'Invalid Key'
+      path = "/data/2010/sf1?key=#{api_key}&get=P0010001&for=state:01"
+      response = $census_connection.get path
+      if response.to_s.include? 'Invalid Key'
         fail "'#{api_key}' is not a valid API key. Check your key for errors,
         or request a new one at census.gov."
       end
