@@ -21,3 +21,5 @@ test/tmp
 test/version_tmp
 tmp
 misc/*
+/.ruby-version
+/.ruby-gemset
