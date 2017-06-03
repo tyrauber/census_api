@@ -5,7 +5,7 @@ module CensusApi
   # an options hash, including fields, level and within. Within is optional.
   class Client
     require 'http'
-    $census_connection = HTTP.persistent "http://api.census.gov"
+    $census_connection = HTTP.persistent "https://api.census.gov"
 
     attr_reader :api_key, :api_vintage, :options
     attr_accessor :dataset
