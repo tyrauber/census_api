@@ -20,10 +20,10 @@ module CensusApi
       fields = options[:fields]
       fields = fields.split(',').push('NAME').join(',') if fields.is_a? String
       fields = fields.push('NAME').join(',') if fields.is_a? Array
-      level  = format(options[:level], false)
+      level  = format(options[:level], false, source)
       params = { key: options[:key], get: fields, for: level }
       unless (options[:within].nil? || (options[:within].is_a?(Array) && options[:within].compact.empty?))
-        params.merge!(in: format(options[:within][0], true))
+        params.merge!(in: format(options[:within][0], true, source))
       end
       options.merge!(vintage: 2010) unless options[:vintage]
       request = new(options[:vintage], source, params)
@@ -61,11 +61,12 @@ module CensusApi
       }
     end
 
-    def self.format(str, truncate)
+    def self.format(str, truncate, source=nil)
       result = str.split('+').map do |s|
         s = s.match(':') ? s.split(':') : [s, '*']
         shp = shapes[s[0].upcase]
-        s.shift && s.unshift(shp['name'].downcase.gsub(' ', '+')) unless shp.nil?
+        name = shp[[source,'name'].compact.join("_")]||shp['name']
+        s.shift && s.unshift(name.downcase.gsub(' ', '+')) unless shp.nil?
         s.unshift(s.shift.split('/')[0]) if !s[0].scan('home+land').empty? && truncate
         s.join(':')
       end

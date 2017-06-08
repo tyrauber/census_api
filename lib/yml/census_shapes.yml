@@ -21,6 +21,7 @@ SUBMCD:
   sumlevel: '067'
   slug: SUBMCD
   name: Subminor Civil Subdivision
+  acs5_name: Subminor Civil Division
   description: state-county-county subdivision-subminor civil subdivision
   path: SUBMCD/2010
 TABBLOCK:
