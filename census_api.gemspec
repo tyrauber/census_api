@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'http'
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'webmock', '< 2.0'
-  gem.add_development_dependency 'vcr'
+  gem.add_development_dependency 'webmock', '>= 3.4.2'
+  gem.add_development_dependency 'vcr', '>= 4.0'
   gem.add_development_dependency 'rubocop'
 end
