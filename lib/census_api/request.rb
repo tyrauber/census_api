@@ -21,7 +21,8 @@ module CensusApi
       fields = fields.split(',').push('NAME').join(',') if fields.is_a? String
       fields = fields.push('NAME').join(',') if fields.is_a? Array
       level  = format(options[:level], false, source)
-      params = { key: options[:key], get: fields, for: level }
+      params = { get: fields, for: level }
+      params.merge!(key: options[:key]) if !!(options[:key])
       unless (options[:within].nil? || (options[:within].is_a?(Array) && options[:within].compact.empty?))
         params.merge!(in: format(options[:within][0], true, source))
       end
