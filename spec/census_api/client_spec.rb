@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe CensusApi::Client, :vcr do
 
+  let(:api_key) { ENV['API_KEY'] || "ABCD" }
+
   describe 'initialize client' do
 
     it 'should not initialize without an api_key' do

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'CensusApi::Examples', :vcr do
+
+  let(:api_key) { ENV['API_KEY'] || "ABCD" }
   let(:client) { CensusApi::Client.new(api_key) }
 
   describe 'sf1' do

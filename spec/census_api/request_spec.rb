@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe CensusApi::Request, :vcr do
 
+  let(:api_key) { ENV['API_KEY'] || "ABCD" }
+
   context '#find' do
     [{source: 'sf1', field: 'P0010001', results: [
         {'P0010001'=>'37253956', 'name'=>'California', 'state'=>'06'},
