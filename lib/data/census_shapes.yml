@@ -1,107 +1,171 @@
 ---
+US:
+  sumlevel: '010'
+  name: 'US'
+  attribute: us
+REGION:
+  sumlevel: '020'
+  name: 'Region'
+  attribute: region
+DIVISION:
+  sumlevel: '030'
+  name: 'Division'
+  attribute: division
 STATE:
   sumlevel: '040'
   slug: STATE
   name: State
   description: state
   path: STATE/2010
+  attribute: state
 COUNTY:
   sumlevel: '050'
   slug: COUNTY
   name: County
   description: state-county
   path: COUNTY/2010
+  attribute: county
 COUSUB:
   sumlevel: '060'
   slug: COUSUB
   name: County Subdivision
   description: state-county-county subdivision
   path: COUSUB/2010
+  attribute: county subdivision
 SUBMCD:
   sumlevel: '067'
   slug: SUBMCD
-  name: Subminor Civil Subdivision
+  name: Subminor Civil Division
   acs5_name: Subminor Civil Division
   description: state-county-county subdivision-subminor civil subdivision
   path: SUBMCD/2010
+  attribute: subminor civil division
+UAC:
+  sumlevel: '085'
+  name: 'Urban Area'
+  attribute: 'urban area'
 TABBLOCK:
   sumlevel: '101'
   slug: TABBLOCK
   name: Block
   description: state-county-tract-block
   path: TABBLOCK/2010
+  attribute: block
 TRACT:
   sumlevel: '140'
   slug: TRACT
   name: Tract
   description: state-county-tract
   path: TRACT/2010
+  attribute: tract
 BG:
   sumlevel: '150'
   slug: BG
   name: Block Group
   description: state-county-tract-block group
   path: BG/2010
+  attribute: block group
 PLACE:
   sumlevel: '160'
   slug: PLACE
   name: Place
   description: state-place
   path: PLACE/2010
+  attribute: place
 ANRC:
   sumlevel: '230'
   slug: ANRC
   name: Alaska Native Regional Corporation
   description: state-alaska native regional corporation
   path: ANRC/2010
+  attribute: alaska native regional corporation
+PLACE/REMAINDER:
+  sumlevel: '263'
+  name: Place/Remainder
 AIANNH:
   sumlevel: '280'
   slug: AIANNH
   name: American Indian Area/Alaska Native Area/Hawaiian Home Land
   description: state-american indian area/alaska native area/hawaiian home land
   path: AIANNH/2010
+  attribute: american indian area/alaska native area/hawaiian home land
 AITS:
   sumlevel: '281'
   slug: AITS
   name: Tribal Subdivision
   description: state-american indian area-tribal subdivision
   path: AITS/2010
+  attribute: american indian tribal subdivision
+TTRACT:
+  sumlevel: '291'
+  name: Tribal Census Tract
+  attribute: tribal census tract
+TBG:
+  sumlevel: '294'
+  name: Tribal Block Group
+  attribute: tribal block group
 CBSA:
   sumlevel: '320'
   slug: CBSA
   name: Metropolitan Statistical Area/Micropolitan Statistical Area
   description: state-metropolitan statistical area/micropolitan statistical area
   path: CBSA/2010
+  attribute: metropolitan statistical area/micropolitan statistical area
 METDIV:
   sumlevel: '323'
   slug: METDIV
   name: Metropolitan Division
   description: state-metropolitan statistical area/micropolitan statistical area-metropolitan division
   path: METDIV/2010
+  attribute: metropolitan division
+NECTA:
+  sumlevel: '337'
+  name: New England City and Town Area
+  attribute: new england city and town area
 CSA:
   sumlevel: '340'
   slug: CSA
   name: Combined Statistical Area
   description: state-combined statistical area
   path: CSA/2010
+  attribute: combined statistical area
+CNECTA:
+  sumlevel: '345'
+  name: Combined New England City and Town Area 
+  attribute: combined new england city and town area
+NECTADIV:
+  sumlevel: '355'
+  name: New England City and Town Area Division 
+  attribute: necta division
+UAC:
+  sumlevel: '400'
+  name: Urban Area/Urban Cluster 
+  attribute: urban area
+CONCITY:
+  sumlevel: '462'
+  name: Consolidated City
+  attribute: consolidated city
 CD:
   sumlevel: '500'
   slug: CD
   name: Congressional District
   description:	state-congressional district (111th)
   path: CD/111
+  attribute: congressional district
 SLDU:
   sumlevel: '610'
   slug: SLDU
   name: State Legislative District (Upper Chamber)
   description: state-state legislative district (upper chamber)
   path: SLDU/2010
+  attribute: state legislative district (upper chamber)
 SLDL:
   sumlevel: '620'
   slug: SLDL
   name: State Legislative District (Lower Chamber)
   description: state-state legislative district (lower chamber)
   path: SLDL/2010
+  attribute: state legislative district (lower chamber)
 VTD:
   sumlevel: '700'
   slug: VTD
@@ -114,21 +178,24 @@ ZCTA5:
   name: ZIP Code Tabulation Area
   description: state-zip code tabulation area
   path: ZCTA5/2010
+  attribute: zip code tabulation area
 ELSD:
   sumlevel: '950'
   slug: ELSD
   name: School District (Elementary)
-  description: State-School District (Elementary)/Remainder
-  path: ELSD/2010
+  description: State-School District (Elementary)
+  attribute: school district (elementary)
 SCSD:
   sumlevel: '960'
   slug: SCSD
   name: School District (Secondary)
   description: State-School District (Secondary)/Remainder
   path: SCSD/2010
+  attribute: school district (secondary)
 UNSD:
   sumlevel: '970'
   slug: UNSD
   name: School District (Unified)
   description: State-School District (Unified)/Remainder
   path: UNSD/2010
+  attribute: school district (unified)

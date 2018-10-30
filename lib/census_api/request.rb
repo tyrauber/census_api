@@ -11,6 +11,7 @@ module CensusApi
     attr_accessor :response
 
     def initialize(vintage, source, options)
+      source = "dec/#{source}" if source == "sf1"
       uri = "/data/#{vintage}/#{source}?#{to_params(options)}"
       @response = $census_connection.get(uri.to_s)
       @response.flush
@@ -20,13 +21,13 @@ module CensusApi
       fields = options[:fields]
       fields = fields.split(',').push('NAME').join(',') if fields.is_a? String
       fields = fields.push('NAME').join(',') if fields.is_a? Array
-      level  = format(options[:level], false, source)
+      level  = format(options[:level])
       params = { get: fields, for: level }
-      params.merge!(key: options[:key]) if !!(options[:key])
-      unless (options[:within].nil? || (options[:within].is_a?(Array) && options[:within].compact.empty?))
-        params.merge!(in: format(options[:within][0], true, source))
+      unless options[:within].nil?
+        params.merge!(in: format(options[:within].join("+")))
       end
       options.merge!(vintage: 2010) unless options[:vintage]
+      params.merge!(key: options[:key]) if !!(options[:key])
       request = new(options[:vintage], source, params)
       request.parse_response
     end
@@ -62,22 +63,18 @@ module CensusApi
       }
     end
 
-    def self.format(str, truncate, source=nil)
-      result = str.split('+').map do |s|
+    def self.format(str)
+      str.split("+").map do |s|
         s = s.match(':') ? s.split(':') : [s, '*']
-        shp = shapes[s[0].upcase]
-        name = shp[[source,'name'].compact.join("_")]||shp['name']
-        s.shift && s.unshift(name.downcase.gsub(' ', '+')) unless shp.nil?
-        s.unshift(s.shift.split('/')[0]) if !s[0].scan('home+land').empty? && truncate
-        s.join(':')
-      end
-      result.join('+')
+        name = (shapes[s[0]]['attribute'] rescue s[0]).gsub(/\s/, '%20')
+        s.shift && s.unshift(name) && s.join(':')
+      end.join("%20")
     end
 
     def self.shapes
       return @@census_shapes if defined?(@@census_shapes)
       @@census_shapes = {}
-      path = "#{File.dirname(__FILE__)}/../yml/census_shapes.yml"
+      path = "#{File.dirname(__FILE__)}/../data/census_shapes.yml"
       YAML.load_file(path).each { |k, v| @@census_shapes[k] = v }
       @@census_shapes
     end
