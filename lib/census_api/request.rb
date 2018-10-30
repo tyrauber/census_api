@@ -11,7 +11,7 @@ module CensusApi
     attr_accessor :response
 
     def initialize(vintage, source, options)
-      source = "dec/#{source}" if source == "sf1"
+      source = "dec/#{source}" if !!(vintage == 2010 && source == "sf1")
       uri = "/data/#{vintage}/#{source}?#{to_params(options)}"
       @response = $census_connection.get(uri.to_s)
       @response.flush
@@ -23,7 +23,7 @@ module CensusApi
       fields = fields.push('NAME').join(',') if fields.is_a? Array
       level  = format(options[:level])
       params = { get: fields, for: level }
-      unless options[:within].nil?
+      unless options[:within].nil? || (options[:within].is_a?(Array) && options[:within].empty?)
         params.merge!(in: format(options[:within].join("+")))
       end
       options.merge!(vintage: 2010) unless options[:vintage]

@@ -1,0 +1,1569 @@
+{
+  "fips": [
+    {
+      "name": "us",
+      "geoLevelDisplay": "010",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "region",
+      "geoLevelDisplay": "020",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "division",
+      "geoLevelDisplay": "030",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state",
+      "geoLevelDisplay": "040",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "county",
+      "geoLevelDisplay": "050",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county subdivision",
+      "geoLevelDisplay": "060",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county"
+      ]
+    },
+    {
+      "name": "subminor civil division",
+      "geoLevelDisplay": "067",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "070",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision"
+      ]
+    },
+    {
+      "name": "tract (or part)",
+      "geoLevelDisplay": "080",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision",
+        "place/remainder (or part)"
+      ]
+    },
+    {
+      "name": "urban rural",
+      "geoLevelDisplay": "085",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision",
+        "place/remainder (or part)",
+        "tract (or part)"
+      ]
+    },
+    {
+      "name": "urban rural",
+      "geoLevelDisplay": "090",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision",
+        "place/remainder (or part)",
+        "tract (or part)",
+        "block group (or part)"
+      ]
+    },
+    {
+      "name": "block group (or part)",
+      "geoLevelDisplay": "091",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "county subdivision",
+        "place/remainder (or part)",
+        "tract (or part)"
+      ]
+    },
+    {
+      "name": "block",
+      "geoLevelDisplay": "100",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "tract"
+      ],
+      "wildcard": [
+        "tract"
+      ],
+      "optionalWithWCFor": "tract"
+    },
+    {
+      "name": "tract",
+      "geoLevelDisplay": "140",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "144",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "tract"
+      ]
+    },
+    {
+      "name": "block group",
+      "geoLevelDisplay": "150",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "tract"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "154",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county",
+        "tract",
+        "block group"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "155",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "place"
+      ]
+    },
+    {
+      "name": "tract (or part)",
+      "geoLevelDisplay": "158",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "place",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "159",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "county"
+      ]
+    },
+    {
+      "name": "place",
+      "geoLevelDisplay": "160",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "consolidated city",
+      "geoLevelDisplay": "170",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "172",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "consolidated city"
+      ]
+    },
+    {
+      "name": "alaska native regional corporation",
+      "geoLevelDisplay": "230",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land",
+      "geoLevelDisplay": "250",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "american indian tribal subdivision",
+      "geoLevelDisplay": "251",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only)",
+      "geoLevelDisplay": "252",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land"
+      ],
+      "wildcard": [
+        "american indian area/alaska native area/hawaiian home land"
+      ],
+      "optionalWithWCFor": "american indian area/alaska native area/hawaiian home land"
+    },
+    {
+      "name": "american indian tribal subdivision (or part)",
+      "geoLevelDisplay": "253",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)"
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land",
+      "geoLevelDisplay": "254",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land"
+      ]
+    },
+    {
+      "name": "american indian tribal subdivision (or part)",
+      "geoLevelDisplay": "255",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land"
+      ]
+    },
+    {
+      "name": "tribal census tract",
+      "geoLevelDisplay": "256",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land"
+      ]
+    },
+    {
+      "name": "tribal census tract (or part)",
+      "geoLevelDisplay": "257",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian tribal subdivision"
+      ]
+    },
+    {
+      "name": "tribal block group",
+      "geoLevelDisplay": "258",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "tribal census tract"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "260",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "261",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "262",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "263",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "264",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "265",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "266",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "267",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "268",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "269",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "270",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "271",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "272",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "273",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "state (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "274",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "275",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "276",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)",
+        "state (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "277",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "278",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land",
+        "state (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "280",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "281",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "282",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+      "geoLevelDisplay": "283",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "284",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area/alaska native area (reservation or statistical entity only) (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "285",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area/alaska native area (reservation or statistical entity only) (or part)"
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+      "geoLevelDisplay": "286",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "287",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area (off-reservation trust land only)/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "288",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area (off-reservation trust land only)/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "290",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian tribal subdivision"
+      ]
+    },
+    {
+      "name": "tribal census tract (or part)",
+      "geoLevelDisplay": "291",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)"
+      ]
+    },
+    {
+      "name": "tribal census tract (or part)",
+      "geoLevelDisplay": "292",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land"
+      ]
+    },
+    {
+      "name": "tribal block group (or part)",
+      "geoLevelDisplay": "293",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area/alaska native area (reservation or statistical entity only)",
+        "tribal census tract (or part)"
+      ]
+    },
+    {
+      "name": "tribal block group (or part)",
+      "geoLevelDisplay": "294",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "american indian area/alaska native area/hawaiian home land",
+        "american indian area (off-reservation trust land only)/hawaiian home land",
+        "tribal census tract (or part)"
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area",
+      "geoLevelDisplay": "310",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "311",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area"
+      ]
+    },
+    {
+      "name": "principal city (or part)",
+      "geoLevelDisplay": "312",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area"
+      ],
+      "wildcard": [
+        "metropolitan statistical area/micropolitan statistical area"
+      ],
+      "optionalWithWCFor": "metropolitan statistical area/micropolitan statistical area"
+    },
+    {
+      "name": "county",
+      "geoLevelDisplay": "313",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "metropolitan division",
+      "geoLevelDisplay": "314",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area"
+      ],
+      "wildcard": [
+        "metropolitan statistical area/micropolitan statistical area"
+      ],
+      "optionalWithWCFor": "metropolitan statistical area/micropolitan statistical area"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "315",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area",
+        "metropolitan division"
+      ]
+    },
+    {
+      "name": "county",
+      "geoLevelDisplay": "316",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "metropolitan statistical area/micropolitan statistical area",
+        "metropolitan division",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area (or part)",
+      "geoLevelDisplay": "320",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "principal city (or part)",
+      "geoLevelDisplay": "321",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "metropolitan statistical area/micropolitan statistical area (or part)"
+      ]
+    },
+    {
+      "name": "county",
+      "geoLevelDisplay": "322",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "metropolitan statistical area/micropolitan statistical area (or part)"
+      ]
+    },
+    {
+      "name": "metropolitan division (or part)",
+      "geoLevelDisplay": "323",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "metropolitan statistical area/micropolitan statistical area (or part)"
+      ]
+    },
+    {
+      "name": "county",
+      "geoLevelDisplay": "324",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "metropolitan statistical area/micropolitan statistical area (or part)",
+        "metropolitan division (or part)"
+      ]
+    },
+    {
+      "name": "combined statistical area",
+      "geoLevelDisplay": "330",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "331",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined statistical area"
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area",
+      "geoLevelDisplay": "332",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined statistical area"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "333",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined statistical area",
+        "metropolitan statistical area/micropolitan statistical area"
+      ]
+    },
+    {
+      "name": "combined new england city and town area",
+      "geoLevelDisplay": "335",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "336",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined new england city and town area"
+      ]
+    },
+    {
+      "name": "new england city and town area",
+      "geoLevelDisplay": "337",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined new england city and town area"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "338",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "combined new england city and town area",
+        "new england city and town area"
+      ]
+    },
+    {
+      "name": "combined statistical area (or part)",
+      "geoLevelDisplay": "340",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area (or part)",
+      "geoLevelDisplay": "341",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "combined statistical area (or part)"
+      ]
+    },
+    {
+      "name": "combined new england city and town area (or part)",
+      "geoLevelDisplay": "345",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "new england city and town area (or part)",
+      "geoLevelDisplay": "346",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "combined new england city and town area (or part)"
+      ]
+    },
+    {
+      "name": "new england city and town area",
+      "geoLevelDisplay": "350",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "351",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area"
+      ]
+    },
+    {
+      "name": "principal city",
+      "geoLevelDisplay": "352",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area"
+      ],
+      "wildcard": [
+        "new england city and town area"
+      ],
+      "optionalWithWCFor": "new england city and town area"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "353",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "geoLevelDisplay": "354",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "necta division",
+      "geoLevelDisplay": "355",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area"
+      ]
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "356",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area",
+        "necta division"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "357",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area",
+        "necta division",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "geoLevelDisplay": "358",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "new england city and town area",
+        "necta division",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "new england city and town area (or part)",
+      "geoLevelDisplay": "360",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "principal city",
+      "geoLevelDisplay": "361",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "362",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "geoLevelDisplay": "363",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "necta division (or part)",
+      "geoLevelDisplay": "364",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "365",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)",
+        "necta division (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "geoLevelDisplay": "366",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "new england city and town area (or part)",
+        "necta division (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "urban area",
+      "geoLevelDisplay": "400",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "410",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area"
+      ]
+    },
+    {
+      "name": "urban area (or part)",
+      "geoLevelDisplay": "420",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "430",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "431",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "urban area (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "440",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area",
+        "state (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "441",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "urban area (or part)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "450",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area",
+        "state (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "451",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "urban area (or part)",
+        "county (or part)",
+        "county subdivision (or part)"
+      ]
+    },
+    {
+      "name": "consolidated city (or part)",
+      "geoLevelDisplay": "462",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "consolidated city (or part)",
+      "geoLevelDisplay": "463",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "urban area (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "464",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "urban area",
+        "state (or part)",
+        "consolidated city (or part)"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "465",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "urban area (or part)",
+        "consolidated city (or part)"
+      ]
+    },
+    {
+      "name": "congressional district",
+      "geoLevelDisplay": "500",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "510",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district"
+      ]
+    },
+    {
+      "name": "tract (or part)",
+      "geoLevelDisplay": "511",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "521",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "531",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district"
+      ]
+    },
+    {
+      "name": "consolidated city (or part)",
+      "geoLevelDisplay": "541",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district"
+      ]
+    },
+    {
+      "name": "place (or part)",
+      "geoLevelDisplay": "542",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "consolidated city (or part)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "550",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+      "geoLevelDisplay": "551",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+      "geoLevelDisplay": "552",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "553",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "554",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area/alaska native area (reservation or statistical entity only) (or part)"
+      ]
+    },
+    {
+      "name": "tribal subdivision/remainder (or part)",
+      "geoLevelDisplay": "555",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district",
+        "american indian area/alaska native area/hawaiian home land (or part)",
+        "american indian area (off-reservation trust land only)/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "alaska native regional corporation",
+      "geoLevelDisplay": "560",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "congressional district"
+      ]
+    },
+    {
+      "name": "state legislative district (upper chamber)",
+      "geoLevelDisplay": "610",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "612",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "613",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "614",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)"
+      ]
+    },
+    {
+      "name": "consolidated city (or part)",
+      "geoLevelDisplay": "615",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "616",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)"
+      ]
+    },
+    {
+      "name": "state legislative district (lower chamber)",
+      "geoLevelDisplay": "620",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "622",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)"
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "geoLevelDisplay": "623",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "624",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)"
+      ]
+    },
+    {
+      "name": "consolidated city (or part)",
+      "geoLevelDisplay": "625",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land (or part)",
+      "geoLevelDisplay": "626",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)"
+      ]
+    },
+    {
+      "name": "tract (or part)",
+      "geoLevelDisplay": "631",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "alaska native regional corporation (or part)",
+      "geoLevelDisplay": "634",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)"
+      ]
+    },
+    {
+      "name": "tract (or part)",
+      "geoLevelDisplay": "636",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)",
+        "county (or part)"
+      ]
+    },
+    {
+      "name": "alaska native regional corporation (or part)",
+      "geoLevelDisplay": "639",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "644",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)",
+        "consolidated city (or part)"
+      ]
+    },
+    {
+      "name": "place/remainder (or part)",
+      "geoLevelDisplay": "645",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)",
+        "consolidated city (or part)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+      "geoLevelDisplay": "646",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only) (or part)",
+      "geoLevelDisplay": "647",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+      "geoLevelDisplay": "648",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (upper chamber)",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land (or part)",
+      "geoLevelDisplay": "649",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "state legislative district (lower chamber)",
+        "american indian area/alaska native area/hawaiian home land (or part)"
+      ]
+    },
+    {
+      "name": "zip code tabulation area",
+      "geoLevelDisplay": "860",
+      "referenceDate": "2010-01-01"
+    },
+    {
+      "name": "state (or part)",
+      "geoLevelDisplay": "870",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "zip code tabulation area"
+      ]
+    },
+    {
+      "name": "zip code tabulation area (or part)",
+      "geoLevelDisplay": "871",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "880",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "zip code tabulation area",
+        "state (or part)"
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "geoLevelDisplay": "881",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state",
+        "zip code tabulation area (or part)"
+      ]
+    },
+    {
+      "name": "school district (elementary)",
+      "geoLevelDisplay": "950",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "school district (secondary)",
+      "geoLevelDisplay": "960",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    },
+    {
+      "name": "school district (unified)",
+      "geoLevelDisplay": "970",
+      "referenceDate": "2010-01-01",
+      "requires": [
+        "state"
+      ],
+      "wildcard": [
+        "state"
+      ],
+      "optionalWithWCFor": "state"
+    }
+  ]
+}
