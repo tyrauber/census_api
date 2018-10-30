@@ -29,7 +29,7 @@ module CensusApi
       [:fields, :level].each do |f|
         fail ArgumentError, "#{f} is a requied parameter" if options[f].nil?
       end
-      options[:within] = [options[:within]]
+      options[:within] = [options[:within]] unless options[:within].nil?
       Request.find(dataset, options)
     end
 
