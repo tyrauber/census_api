@@ -5,9 +5,9 @@ describe CensusApi::Request, :vcr do
   let(:api_key) { ENV['API_KEY'] || "ABCD" }
 
   context '#find' do
-    [{source: 'sf1', field: 'P0010001', results: [
-        {'P0010001'=>'37253956', 'name'=>'California', 'state'=>'06'},
-        {'P0010001'=>'1510271', 'name'=>'Alameda County', 'state'=>'06', 'county'=>'001'}
+    [{source: 'sf1', field: 'P001001', results: [
+        {'P001001'=>'37253956', 'name'=>'California', 'state'=>'06'},
+        {'P001001'=>'1510271', 'name'=>'Alameda County, California', 'state'=>'06', 'county'=>'001'}
       ]},
       {source: 'acs5', field: 'B00001_001E', results: [
         {'B00001_001E'=>'2330290', 'name'=>'California', 'state'=>'06'},
@@ -140,7 +140,7 @@ describe CensusApi::Request, :vcr do
             key: api_key,
             source: source,
             vintage: source.match('sf1') ? 2010 : 2012,
-            fields: source.match('sf1') ? 'P0010001' : 'B00001_001E',
+            fields: source.match('sf1') ? 'P001001' : 'B00001_001E',
             level: 'STATE',
             within: []
           }
@@ -186,7 +186,7 @@ describe CensusApi::Request, :vcr do
 
   context '#format' do
     it 'should add wildcard after reformatting geography type without id' do
-      expect(CensusApi::Request.format('COUSUB')).to eq('county+subdivision:*')
+      expect(CensusApi::Request.format('COUSUB')).to eq('county%20subdivision:*')
     end
   end
 end

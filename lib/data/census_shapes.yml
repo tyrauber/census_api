@@ -199,3 +199,27 @@ UNSD:
   description: State-School District (Unified)/Remainder
   path: UNSD/2010
   attribute: school district (unified)
+PLACER:
+  sumlevel: '070'
+  name: Place/Remainder
+  attribute: place/remainder
+UR:
+  sumlevel: '085'
+  name: Urban Rural
+  attribute: urban rural
+AIAANA:
+  sumlevel: '252'
+  name: American Indian Area/Alaska Native Area
+  attribute: american indian area/alaska native area (reservation or statistical entity only)
+AIAHHL:
+  sumlevel: '254'
+  name: American Indian Area / Hawaiian Home Land
+  attribute: american indian area (off-reservation trust land only)/hawaiian home land
+TSUB:
+  sumlevel: '281'
+  name: Tribal Subdivision
+  attribute: tribal subdivision/remainder
+PCITY:
+  sumlevel: '312'
+  name: Principal City
+  attribute: principal city

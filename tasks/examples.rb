@@ -9,7 +9,7 @@ def self.shapes
 end
 
 def self.name(string)
-  n = shapes[string] || string.gsub(/\s/, '%20')
+  n = (shapes[string] || string).gsub(/\s/, '%20')
 end
 
 def self.generate(filename, path)
@@ -38,10 +38,10 @@ def self.generate(filename, path)
     end
   end
   File.open("#{File.dirname(__FILE__)}/../spec/support/#{filename}.rb", 'w') do |file| 
-    file.write("module #{filename.split("_").map(&:capitalize).join}\n\tEXAMPLES = [\n")
-    file.write(tests.map{ |t| "\t\t#{t}" }.join(",\n"))
-    file.write("\n\t]\nend\n")
+    file.write("module #{filename.split("_").map(&:capitalize).join}\n  EXAMPLES = [\n")
+    file.write(tests.map{ |t| "    #{t}" }.join(",\n"))
+    file.write("\n  ]\nend\n")
   end
 end
 
-generate("census_examples_sf1", "lib/data/2010_dec_sf1_examples.json")
+generate("census_examples_sf1", "lib/data/2010/dec/sf1/examples.json")
