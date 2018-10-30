@@ -1,0 +1,1220 @@
+{
+  "get": [
+    "NAME",
+    "B01001_001E"
+  ],
+  "fips": [
+    {
+      "name": "us",
+      "exampleValue": "1",
+      "geoLevelDisplay": "010",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "region",
+      "exampleValue": "1",
+      "geoLevelDisplay": "020",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "division",
+      "exampleValue": "1",
+      "geoLevelDisplay": "030",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "state",
+      "exampleValue": "01",
+      "geoLevelDisplay": "040",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "county",
+      "exampleValue": "013",
+      "geoLevelDisplay": "050",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "02",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "exampleValue": "01099",
+      "geoLevelDisplay": "060",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "36"
+        },
+        {
+          "name": "county",
+          "exampleValue": "029",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "tract",
+      "exampleValue": "000100",
+      "geoLevelDisplay": "140",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "county",
+          "exampleValue": "073",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "place",
+      "exampleValue": "00065",
+      "geoLevelDisplay": "160",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "02",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "alaska native regional corporation",
+      "exampleValue": "41640",
+      "geoLevelDisplay": "230",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "02",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land",
+      "exampleValue": "0010",
+      "geoLevelDisplay": "250",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area",
+      "exampleValue": "10100",
+      "geoLevelDisplay": "310",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "combined statistical area",
+      "exampleValue": "104",
+      "geoLevelDisplay": "330",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "new england city and town area",
+      "exampleValue": "70450",
+      "geoLevelDisplay": "350",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "urban area",
+      "exampleValue": "00037",
+      "geoLevelDisplay": "400",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "congressional district",
+      "exampleValue": "00",
+      "geoLevelDisplay": "500",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "56",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "school district (elementary)",
+      "exampleValue": "00001",
+      "geoLevelDisplay": "950",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "50"
+        }
+      ]
+    },
+    {
+      "name": "school district (secondary)",
+      "exampleValue": "00002",
+      "geoLevelDisplay": "960",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "50"
+        }
+      ]
+    },
+    {
+      "name": "school district (unified)",
+      "exampleValue": "00001",
+      "geoLevelDisplay": "970",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "001",
+      "geoLevelDisplay": "155",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "place",
+          "exampleValue": "62328"
+        }
+      ]
+    },
+    {
+      "name": "place remainder",
+      "exampleValue": "60264",
+      "geoLevelDisplay": "070",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "county",
+          "exampleValue": "001"
+        },
+        {
+          "name": "county subdivision",
+          "exampleValue": "92106"
+        }
+      ]
+    },
+    {
+      "name": "block group",
+      "exampleValue": "0",
+      "geoLevelDisplay": "150",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "06"
+        },
+        {
+          "name": "county",
+          "exampleValue": "061"
+        },
+        {
+          "name": "tract",
+          "exampleValue": "990000",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "public use microdata area",
+      "exampleValue": "00100",
+      "geoLevelDisplay": "795",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "36",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "zip code tabulation area",
+      "exampleValue": "00610",
+      "geoLevelDisplay": "860",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "state legislative district (upper chamber)",
+      "exampleValue": "001",
+      "geoLevelDisplay": "610",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "12"
+        }
+      ]
+    },
+    {
+      "name": "state legislative district (lower chamber)",
+      "exampleValue": "001",
+      "geoLevelDisplay": "620",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "principal city",
+      "exampleValue": "57576",
+      "geoLevelDisplay": "312",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "11500"
+        },
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "metropolitan division",
+      "exampleValue": "40484",
+      "geoLevelDisplay": "314",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "14460"
+        }
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area",
+      "exampleValue": "10100",
+      "geoLevelDisplay": "320",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "46"
+        }
+      ]
+    },
+    {
+      "name": "principal city (or part)",
+      "exampleValue": "57576",
+      "geoLevelDisplay": "321",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "11500"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "01",
+      "geoLevelDisplay": "311",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "10700"
+        }
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land",
+      "exampleValue": "9820",
+      "geoLevelDisplay": "280",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "combined new england city and town area",
+      "exampleValue": "775",
+      "geoLevelDisplay": "335",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "combined statistical area",
+      "exampleValue": "140",
+      "geoLevelDisplay": "340",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "41"
+        }
+      ]
+    },
+    {
+      "name": "combined new england city and town area",
+      "exampleValue": "715",
+      "geoLevelDisplay": "345",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        }
+      ]
+    },
+    {
+      "name": "new england city and town area",
+      "exampleValue": "76450",
+      "geoLevelDisplay": "360",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "01",
+      "geoLevelDisplay": "410",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "urban growth area",
+          "exampleValue": "02791"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "003",
+      "geoLevelDisplay": "430",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "urban growth area",
+          "exampleValue": "68482"
+        },
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "001",
+      "geoLevelDisplay": "612",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "state legislative district (upper chamber)",
+          "exampleValue": "030"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "003",
+      "geoLevelDisplay": "622",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "state legislative district (lower chamber)",
+          "exampleValue": "096"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "09",
+      "geoLevelDisplay": "351",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71950"
+        }
+      ]
+    },
+    {
+      "name": "principal city (or part)",
+      "exampleValue": "02515",
+      "geoLevelDisplay": "352",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "70450"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "exampleValue": "011",
+      "geoLevelDisplay": "353",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "70450"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "exampleValue": "51265",
+      "geoLevelDisplay": "354",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "70450"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25"
+        },
+        {
+          "name": "county",
+          "exampleValue": "011",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "necta division",
+      "exampleValue": "74204",
+      "geoLevelDisplay": "355",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "25",
+      "geoLevelDisplay": "356",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        },
+        {
+          "name": "necta division",
+          "exampleValue": "71654"
+        }
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "exampleValue": "005",
+      "geoLevelDisplay": "357",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        },
+        {
+          "name": "necta division",
+          "exampleValue": "71654"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25"
+        }
+      ]
+    },
+    {
+      "name": "county subdivision (or part)",
+      "exampleValue": "38225",
+      "geoLevelDisplay": "358",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        },
+        {
+          "name": "necta division",
+          "exampleValue": "71654"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25"
+        },
+        {
+          "name": "county",
+          "exampleValue": "005"
+        }
+      ]
+    },
+    {
+      "name": "principal city",
+      "exampleValue": "74260",
+      "geoLevelDisplay": "361",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71950"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "001",
+      "geoLevelDisplay": "362",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71950"
+        }
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "exampleValue": "33620",
+      "geoLevelDisplay": "363",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71950"
+        },
+        {
+          "name": "county",
+          "exampleValue": "001"
+        }
+      ]
+    },
+    {
+      "name": "necta division",
+      "exampleValue": "74204",
+      "geoLevelDisplay": "364",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "25"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "009",
+      "geoLevelDisplay": "365",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "25"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        },
+        {
+          "name": "necta division",
+          "exampleValue": "73604"
+        }
+      ]
+    },
+    {
+      "name": "county subdivision",
+      "exampleValue": "07420",
+      "geoLevelDisplay": "366",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "25"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "71650"
+        },
+        {
+          "name": "necta division",
+          "exampleValue": "71654"
+        },
+        {
+          "name": "county",
+          "exampleValue": "009"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "007",
+      "geoLevelDisplay": "510",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "congressional district",
+          "exampleValue": "06"
+        }
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area/hawaiian home land",
+      "exampleValue": "2865",
+      "geoLevelDisplay": "550",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "congressional district",
+          "exampleValue": "02"
+        }
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "exampleValue": "013",
+      "geoLevelDisplay": "313",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "10100"
+        },
+        {
+          "name": "state",
+          "exampleValue": "46"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "06",
+      "geoLevelDisplay": "315",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "31080"
+        },
+        {
+          "name": "metropolitan division",
+          "exampleValue": "31084"
+        }
+      ]
+    },
+    {
+      "name": "county (or part)",
+      "exampleValue": "021",
+      "geoLevelDisplay": "316",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "14460"
+        },
+        {
+          "name": "metropolitan division",
+          "exampleValue": "14454"
+        },
+        {
+          "name": "state",
+          "exampleValue": "25"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "009",
+      "geoLevelDisplay": "322",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "13820"
+        }
+      ]
+    },
+    {
+      "name": "metropolitan division",
+      "exampleValue": "42034",
+      "geoLevelDisplay": "323",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "06"
+        },
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "41860"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "001",
+      "geoLevelDisplay": "324",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "06"
+        },
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "41860"
+        },
+        {
+          "name": "metropolitan division",
+          "exampleValue": "36084"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "05",
+      "geoLevelDisplay": "331",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined statistical area",
+          "exampleValue": "308"
+        }
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area",
+      "exampleValue": "41900",
+      "geoLevelDisplay": "332",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined statistical area",
+          "exampleValue": "364"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "01",
+      "geoLevelDisplay": "333",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined statistical area",
+          "exampleValue": "142"
+        },
+        {
+          "name": "metropolitan statistical area/micropolitan statistical area",
+          "exampleValue": "45180"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "09",
+      "geoLevelDisplay": "336",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined new england city and town area",
+          "exampleValue": "715"
+        }
+      ]
+    },
+    {
+      "name": "new england city and town area",
+      "exampleValue": "78850",
+      "geoLevelDisplay": "337",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined new england city and town area",
+          "exampleValue": "710"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "09",
+      "geoLevelDisplay": "338",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "combined new england city and town area",
+          "exampleValue": "720"
+        },
+        {
+          "name": "new england city and town area",
+          "exampleValue": "78700"
+        }
+      ]
+    },
+    {
+      "name": "metropolitan statistical area/micropolitan statistical area (or part)",
+      "exampleValue": "45180",
+      "geoLevelDisplay": "341",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        },
+        {
+          "name": "combined statistical area",
+          "exampleValue": "142"
+        }
+      ]
+    },
+    {
+      "name": "new england city and town area",
+      "exampleValue": "78700",
+      "geoLevelDisplay": "346",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09"
+        },
+        {
+          "name": "combined new england city and town area",
+          "exampleValue": "720"
+        }
+      ]
+    },
+    {
+      "name": "consolidated city",
+      "exampleValue": "47500",
+      "geoLevelDisplay": "170",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "09",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "place",
+      "exampleValue": "03440",
+      "geoLevelDisplay": "172",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "13"
+        },
+        {
+          "name": "consolidated city",
+          "exampleValue": "03436"
+        }
+      ]
+    },
+    {
+      "name": "american indian tribal subdivision/remainder",
+      "exampleValue": "600",
+      "geoLevelDisplay": "251",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "0605",
+          "isOptionalWithWCFor": true,
+          "wildcard": true
+        }
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only)",
+      "exampleValue": "0155",
+      "geoLevelDisplay": "252",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land",
+      "exampleValue": "0305",
+      "geoLevelDisplay": "254",
+      "referenceDate": "2015-01-01"
+    },
+    {
+      "name": "tribal census tract",
+      "exampleValue": "T00900",
+      "geoLevelDisplay": "256",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "0020"
+        }
+      ]
+    },
+    {
+      "name": "tribal block group",
+      "exampleValue": "B",
+      "geoLevelDisplay": "258",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "0020"
+        },
+        {
+          "name": "tribal census tract",
+          "exampleValue": "T00400"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "02",
+      "geoLevelDisplay": "260",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "6070"
+        }
+      ]
+    },
+    {
+      "name": "place remainder",
+      "exampleValue": "80376",
+      "geoLevelDisplay": "269",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "9550"
+        },
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "county",
+      "exampleValue": "053",
+      "geoLevelDisplay": "270",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "2865"
+        },
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "american indian area/alaska native area (reservation or statistical entity only)",
+      "exampleValue": "9820",
+      "geoLevelDisplay": "283",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "01"
+        }
+      ]
+    },
+    {
+      "name": "american indian area (off-reservation trust land only)/hawaiian home land",
+      "exampleValue": "4200",
+      "geoLevelDisplay": "286",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "04"
+        }
+      ]
+    },
+    {
+      "name": "state",
+      "exampleValue": "04",
+      "geoLevelDisplay": "290",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area/alaska native area/hawaiian home land",
+          "exampleValue": "1310"
+        },
+        {
+          "name": "american indian tribal subdivision/remainder",
+          "exampleValue": "700"
+        }
+      ]
+    },
+    {
+      "name": "tribal census tract",
+      "exampleValue": "T00900",
+      "geoLevelDisplay": "291",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area reservation only",
+          "exampleValue": "0020"
+        }
+      ]
+    },
+    {
+      "name": "tribal census tract",
+      "exampleValue": "T00100",
+      "geoLevelDisplay": "292",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area (off-reservation trust land only)/hawaiian home land",
+          "exampleValue": "0010"
+        }
+      ]
+    },
+    {
+      "name": "tribal block group",
+      "exampleValue": "C",
+      "geoLevelDisplay": "293",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area reservation only",
+          "exampleValue": "0010"
+        },
+        {
+          "name": "tribal census tract",
+          "exampleValue": "T00100"
+        }
+      ]
+    },
+    {
+      "name": "tribal block group",
+      "exampleValue": "C",
+      "geoLevelDisplay": "294",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "american indian area (off-reservation trust land only)/hawaiian home land",
+          "exampleValue": "0020"
+        },
+        {
+          "name": "tribal census tract",
+          "exampleValue": "T00800"
+        }
+      ]
+    },
+    {
+      "name": "subminor civil division",
+      "exampleValue": "81675",
+      "geoLevelDisplay": "067",
+      "referenceDate": "2015-01-01",
+      "in": [
+        {
+          "name": "state",
+          "exampleValue": "72"
+        },
+        {
+          "name": "county",
+          "exampleValue": "005"
+        },
+        {
+          "name": "county subdivision",
+          "exampleValue": "00788"
+        }
+      ]
+    }
+  ]
+}

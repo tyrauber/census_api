@@ -11,7 +11,11 @@ module CensusApi
     attr_accessor :response
 
     def initialize(vintage, source, options)
-      source = "dec/#{source}" if !!(vintage == 2010 && source == "sf1")
+      if !!(vintage == 2010 && source == "sf1")
+        source = "dec/#{source}"
+      elsif !!(vintage == 2015 && source == "acs5")
+        source = "acs/#{source}"
+      end
       uri = "/data/#{vintage}/#{source}?#{to_params(options)}"
       @response = $census_connection.get(uri.to_s)
       @response.flush

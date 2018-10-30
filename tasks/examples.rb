@@ -44,4 +44,5 @@ def self.generate(filename, path)
   end
 end
 
-generate("census_examples_sf1", "lib/data/2010/dec/sf1/examples.json")
+generate("census_2010_dec_sf1", "lib/data/2010/dec/sf1/examples.json")
+generate("census_2015_acs_acs5", "lib/data/2015/acs/acs5/examples.json")
