@@ -1,4 +1,4 @@
-module CensusExamplesSf1
+module Census2010DecSf1
   EXAMPLES = [
     ["H001001", "US:*"],
     ["H001001", "US:1"],
