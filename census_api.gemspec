@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'webmock', '>= 3.4.2'
   gem.add_development_dependency 'vcr', '>= 4.0'
   gem.add_development_dependency 'rubocop'
+  gem.add_development_dependency 'rest-client'
 end

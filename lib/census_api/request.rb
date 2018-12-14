@@ -11,10 +11,18 @@ module CensusApi
     attr_accessor :response
 
     def initialize(vintage, source, options)
-      if !!(vintage == 2010 && source == "sf1")
-        source = "dec/#{source}"
-      elsif !!(vintage == 2015 && source == "acs5")
-        source = "acs/#{source}"
+      api_changes = [
+        {source: 'acs1', from: 2012, to: 2015, new_endpoint: 'acs/acs1'},
+        {source: 'acs3', from: 2012, to: 2013, new_endpoint: 'acs/acs3'},
+        {source: 'acs5', from: 2010, to: 2015, new_endpoint: 'acs/acs5'},
+        {source: 'acsse', from: 2014, to: 2015, new_endpoint: 'acs/acsse'},
+        {source: 'sf1', from: 2010, to: 2010, new_endpoint: 'dec/sf1'}
+      ]
+      route = api_changes.detect do |a| 
+        a[:source] == source && a[:from] <= vintage.to_i && a[:to] >= vintage.to_i
+      end
+      if route
+        source = route[:new_endpoint]
       end
       uri = "/data/#{vintage}/#{source}?#{to_params(options)}"
       @response = $census_connection.get(uri.to_s)
