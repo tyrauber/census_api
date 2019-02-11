@@ -18,6 +18,7 @@ describe 'CensusApi::Examples', :vcr do
            expect{ response }.not_to raise_error
            expect(response).to be_a(Array)
            expect(response.first).to include('name')
+           sleep(0.2);
          end
        end
     end
