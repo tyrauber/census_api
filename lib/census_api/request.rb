@@ -13,7 +13,7 @@ module CensusApi
     def initialize(vintage, source, options)
       api_changes = [
         {source: 'acs1', from: 2012, to: 2015, new_endpoint: 'acs/acs1'},
-        {source: 'acs3', from: 2012, to: 2013, new_endpoint: 'acs/acs3'},
+        #{source: 'acs3', from: 2012, to: 2013, new_endpoint: 'acs/acs3'},
         {source: 'acs5', from: 2010, to: 2015, new_endpoint: 'acs/acs5'},
         {source: 'acsse', from: 2014, to: 2015, new_endpoint: 'acs/acsse'},
         {source: 'sf1', from: 2010, to: 2010, new_endpoint: 'dec/sf1'}

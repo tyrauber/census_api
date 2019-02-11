@@ -26,6 +26,10 @@ def self.read(opts=[])
   open("../support/data/#{opts.join("_")}.rb").read
 end
 
+# Generate test examples from a vintage and dataset
+# generate("census_2010_dec_sf1", "https://api.census.gov/data/2010/dec/sf1/examples.json")
+# generate("census_2015_acs_acs5", "https://api.census.gov/data/2015/acs/acs5/examples.json")
+
 def self.generate(opts=[])
   url = "https://api.census.gov/data/#{opts.join("/")}/examples.json"
   filename = opts.join("_")
@@ -58,8 +62,4 @@ def self.generate(opts=[])
     file.write("\n  ]\nend\n")
   end
 end
-#
-#
-# generate("census_2010_dec_sf1", "https://api.census.gov/data/2010/dec/sf1/examples.json")
-# generate("census_2015_acs_acs5", "https://api.census.gov/data/2015/acs/acs5/examples.json")
-#
+

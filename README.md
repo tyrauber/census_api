@@ -21,13 +21,9 @@ And install it with <tt>bundle install</tt>
 
 ## Notice: Breaking API Changes
 
-The US Census Bureau is currenting updating their API's to centralize ("all data in the Census API into a uniform and consistent format across all datasets and surveys")[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html].  As a result, the US Census Bureau will be introducing breaking changes.
+The US Census Bureau is currently centralizing ("all data in the Census API into a uniform and consistent format across all datasets and surveys")[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html] which will result in breaking changes.  Some variable names have changed and (a complete variable mapping is not available.)[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html] 
 
-### 2010 SF1
-
-(VARIABLE NAME CHANGES: Please note the changes to some variable names. H00010001 is now H001001, and PCT0210001 is now PCT021001, for example.  A complete variable mapping is not available.)[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html]
-
-Additionally, they have introduced a required conditional on boundaries which result in a partial overlap, whereby ` (or part)` is ammended to the partial boundary on request. There is no documenation on this change, and it's virtually impossible to programmatically apply it. Therefore, those attributes are not shorthanded. Please review the updated test examples.
+This Readme and test suite examples have been updated.  1/10/19
 
 ## Usage / Retrieving Census Data
 
