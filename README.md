@@ -5,11 +5,8 @@ This gem provides a Ruby wrapper around the Census Bureau API.
 
 ## Obtaining an API key
 
-To be able to use this gem, you'll need a Census Bureau API key. To request an API key, visit
-[http://www.census.gov/developers/tos/key_request.html][key] and follow the instructions.
-
-[key]: (http://www.census.gov/developers/tos/key_request.html)
-
+To be able to use this gem, you'll need a Census Bureau API key. To request an API key, 
+[visit http://www.census.gov/developers/tos/key_request.html](http://www.census.gov/developers/tos/key_request.html) and follow the instructions.
 
 ## Installing the gem
 
@@ -21,7 +18,7 @@ And install it with <tt>bundle install</tt>
 
 ## Notice: Breaking API Changes
 
-The US Census Bureau is currently centralizing ("all data in the Census API into a uniform and consistent format across all datasets and surveys")[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html] which will result in breaking changes.  Some variable names have changed and (a complete variable mapping is not available.)[https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html] 
+The US Census Bureau is currently centralizing ["all data in the Census API into a uniform and consistent format across all datasets and surveys"](https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html) which will result in breaking changes.  Some variable names have changed and [a complete variable mapping is not available.](https://www.census.gov/data/developers/updates/api-format-changes--sf1-2010.html)
 
 This Readme and test suite examples have been updated.  1/10/19
 
